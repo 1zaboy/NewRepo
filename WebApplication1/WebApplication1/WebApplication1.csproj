@@ -200,6 +200,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="C__MigrationHistory.cs" />
     <Compile Include="db.cs" />
+    <Compile Include="DbHelpFile.cs" />
     <Compile Include="DbUserOrder.cs" />
     <Compile Include="DtHomeImgCarousel.cs" />
     <Compile Include="DtHomeImgInfos.cs" />
@@ -227,6 +228,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -275,6 +277,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\Orders.cshtml" />
+    <Content Include="Views\Home\Developers.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

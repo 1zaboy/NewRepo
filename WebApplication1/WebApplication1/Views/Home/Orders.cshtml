@@ -1,0 +1,19 @@
+﻿@using WebApplication1;
+@using WebApplication1.Controllers;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row row_position">
+    @foreach (DbUserOrder ss in ViewBag.Ord)
+    {
+        <dov class="_col-lg-4">
+            <div class="card text-center" style="width: 70%; margin: auto">
+                <div class="card-block">
+                    <h4 class="card-title text-center">@ss.Price</h4>
+                    <p class="card-text text_left">@ss.Discription</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </dov>
+    }
+</div>

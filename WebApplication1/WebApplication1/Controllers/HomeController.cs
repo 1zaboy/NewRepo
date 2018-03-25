@@ -8,9 +8,10 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
+        db fil1 = new db();
         public ActionResult Index()
         {
-            db fil1 = new db();
+            
             ViewBag.Home_Card = fil1.DtHomeImgInfos;
             ViewBag.Home_Corouse = fil1.DtHomeImgCarousel;
             return View();
@@ -27,6 +28,18 @@ namespace WebApplication1.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+        public ActionResult Orders()
+        {
+            ViewBag.Message = "Your contact page.";
+            ViewBag.Ord = fil1.DbUserOrder;
+            return View();
+        }
+        public ActionResult Developers()
+        {
+            ViewBag.Message = "Your contact page.";
+            ViewBag.UserListOnPrint = fil1.AspNetUsers;
             return View();
         }
     }

@@ -17,6 +17,7 @@ namespace WebApplication1
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<DbHelpFile> DbHelpFile { get; set; }
         public virtual DbSet<DbUserOrder> DbUserOrder { get; set; }
         public virtual DbSet<DtHomeImgCarousel> DtHomeImgCarousel { get; set; }
         public virtual DbSet<DtHomeImgInfos> DtHomeImgInfos { get; set; }
