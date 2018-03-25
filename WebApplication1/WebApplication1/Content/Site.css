@@ -1,0 +1,94 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.img_carusel {
+    width: 100%;
+    height: -webkit-fill-available;
+    margin: auto;
+}
+
+.card_user_style1 {
+    width: 100%;    
+}
+.text_left {
+    text-align: left;
+}
+.text_center {
+    text-align: center;
+}
+.row_position {
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+
+
+
+
+
+@media (min-width: 1000px) {
+    ._col-lg-4 {
+        float: left;
+        width: 33.33333333333333%;
+
+    }
+    .size_carusel {
+        width: 100%;
+        height: 40rem;
+    }
+}
+@media (max-width: 1000px) {
+    ._col-lg-4 {
+        float: left;
+        width: 50%;
+    }
+    .size_carusel {
+        width: 100%;
+        height: 35rem;
+    }
+}
+@media (max-width: 768px) {
+    ._col-lg-4 {
+        float: left;
+        width: 100%;
+    }
+    .size_carusel {
+        width: 100%;
+        height: 30rem;
+    }
+}
+
+
+._col-lg-4 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.logo_position_size {
+    width: 150px;
+    height: 25px
+}

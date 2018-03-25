@@ -1,0 +1,62 @@
+﻿@using WebApplication1.Controllers;
+@using WebApplication1;
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div id="myCarousel" class="carousel slide size_carusel" data-interval="4000" data-ride="carousel">
+    <!-- Указатели -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
+    <!-- Контент слайда (slider wrap)-->
+    <div class="carousel-inner size_carusel" role="listbox">
+        @{int i = 0;}
+        @foreach (DtHomeImgCarousel f in ViewBag.Home_Corouse)
+        {
+            var active = i == 0 ? "active" : "";
+            <div class="item @active">
+                <img src="~/Content/image/@f.img" class="img_carusel" style="height: -webkit-fill-available" ift="">
+            </div>
+            i++;
+        }
+    </div>
+    <!-- Элементы управления -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div>
+<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row row_position">
+    @foreach (DtHomeImgInfos ss in ViewBag.Home_Card)
+    {
+        <dov class="_col-lg-4">
+            <div class="card text-center" style="width: 70%; margin: auto">
+                <img class="card-img-top card_user_style1" src="~/Content/image/@ss.Imgs" alt="Card image cap">
+                <div class="card-block">
+                    <h4 class="card-title text-center">@ss.Title</h4>
+                    <p class="card-text text_left">@ss.Text</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </dov>
+    }
+</div>
+
+
+
+
