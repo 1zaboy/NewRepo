@@ -20,6 +20,12 @@ namespace WebApplication1.Controllers
         {
         }
 
+        public ActionResult CreatureOrder()
+        {
+            ViewBag.Message = "Your contact page.";
+            return View();
+        }
+
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;

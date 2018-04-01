@@ -279,6 +279,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Orders.cshtml" />
     <Content Include="Views\Home\Developers.cshtml" />
+    <Content Include="Views\Manage\CreatureOrder.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
