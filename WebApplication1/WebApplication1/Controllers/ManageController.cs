@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -15,15 +17,35 @@ namespace WebApplication1.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        public int idex_order;
         public ManageController()
         {
+            idex_order = 0;
         }
-
+        db ff = new db();
         public ActionResult CreatureOrder()
         {
             ViewBag.Message = "Your contact page.";
             return View();
+        }
+        [HttpPost]
+        public ActionResult Create(DbUserOrder book)
+        {
+            ff.DbUserOrder.Add(book);
+            ff.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        
+        [HttpPost]
+        public ActionResult CreatureOrder(DbUserOrder book)
+        {
+            
+            ff.Entry(book).State = EntityState.Added;
+            ff.SaveChanges();
+            idex_order++;
+            return RedirectToAction("Index");
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)

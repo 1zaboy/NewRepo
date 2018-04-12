@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
+
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Spatial;
 namespace WebApplication1.Models
 {
     public class IndexViewModel
@@ -82,5 +86,52 @@ namespace WebApplication1.Models
     {
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
+    }
+    public class NewOrderViewModel
+    {
+        [Required]
+        [Display(Name = "Адрес электронной почты")]
+        public string MainName { get; set; }
+
+        [Required]
+        [Display(Name = "Пароль")]
+        public string Discription { get; set; }
+
+        [Required]
+        [Display(Name = "Подтверждение пароля")]
+        public string Price { get; set; }
+
+        //[Required]
+        //public DateTime DateIn { get; set; }
+
+        //[Required]
+        //public DateTime DateOut { get; set; }
+    }
+  
+    public partial class DbUserOrder
+    {
+   
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
+        [StringLength(128)]
+        public string User1Id { get; set; }
+
+        [StringLength(128)]
+        public string User2Id { get; set; }
+
+        public DateTime? DateIn { get; set; }
+
+        public DateTime? DateOut { get; set; }
+
+        [StringLength(50)]
+        public string Price { get; set; }
+
+        public string Discription { get; set; }
+
+        public string WayFile { get; set; }
+        
+        public string MainName { get; set; }
+
     }
 }

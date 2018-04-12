@@ -28,5 +28,6 @@ namespace WebApplication1
         public string Discription { get; set; }
 
         public string WayFile { get; set; }
+
     }
 }
