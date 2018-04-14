@@ -48,6 +48,8 @@ namespace WebApplication1.Controllers
             //var sr = new StreamReader(File.Create("~/Content/image/felp.txt"));
             //int s = Convert.ToInt32(sr.ReadLine());
             //sr.Close();
+            var val = fil1.DbUserOrder.Count();// Where(t => t.Id == book.Id).ToList().Last().Id;
+            book.Id = val + 1;
             ff.Entry(book).State = EntityState.Added;
             ff.SaveChanges();
             //s++;
