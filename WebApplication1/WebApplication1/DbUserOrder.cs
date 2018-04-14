@@ -1,3 +1,5 @@
+using System.Data.Entity.ModelConfiguration.Conventions;
+
 namespace WebApplication1
 {
     using System;

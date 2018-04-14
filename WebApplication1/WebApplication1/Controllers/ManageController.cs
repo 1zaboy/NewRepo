@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,15 +13,16 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
+    using System.IO;
     [Authorize]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        public int idex_order;
+       
         public ManageController()
         {
-            idex_order = 0;
+            
         }
         db ff = new db();
         public ActionResult CreatureOrder()
@@ -31,9 +33,11 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult Create(DbUserOrder book)
         {
+          
             ff.DbUserOrder.Add(book);
             ff.SaveChanges();
-
+          
+         
             return RedirectToAction("Index");
         }
 
@@ -41,10 +45,15 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult CreatureOrder(DbUserOrder book)
         {
-            
+            //var sr = new StreamReader(File.Create("~/Content/image/felp.txt"));
+            //int s = Convert.ToInt32(sr.ReadLine());
+            //sr.Close();
             ff.Entry(book).State = EntityState.Added;
             ff.SaveChanges();
-            idex_order++;
+            //s++;
+            //var sw = new StreamWriter(System.IO.File.Create("felp.txt"));
+            //sw.WriteLine(s.ToString());
+            //sw.Close();
             return RedirectToAction("Index");
         }
 
@@ -80,6 +89,14 @@ namespace WebApplication1.Controllers
 
         //
         // GET: /Manage/Index
+        db fil1 = new db();
+        public ActionResult UserInfo(string UserId)
+        {
+            ViewBag.UInfo = fil1.AspNetUsers.Where(t => t.Id == UserId).ToList().First();
+
+            var tt = 0;
+            return View();
+        }
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =

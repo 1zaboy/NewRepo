@@ -280,6 +280,7 @@
     <Content Include="Views\Home\Orders.cshtml" />
     <Content Include="Views\Home\Developers.cshtml" />
     <Content Include="Views\Manage\CreatureOrder.cshtml" />
+    <Content Include="Views\Manage\UserInfo.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

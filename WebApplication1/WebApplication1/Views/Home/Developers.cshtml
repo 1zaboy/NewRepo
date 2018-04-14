@@ -21,7 +21,10 @@
         <tr>
             <td>@ss.UserName</td>
             <td>@ss.Email</td>
-            <td>@ss.PhoneNumber</td>
+            <td>
+                @ss.Id
+                <a class="btn btn-primary btn-lg" href="@Url.Action("UserInfo", "Manage", new { UserId = @ss.Id})"></a>
+            </td>
         </tr>
         </tbody>
         }
