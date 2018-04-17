@@ -25,9 +25,10 @@ namespace WebApplication1.Controllers
             
         }
         db ff = new db();
-        public ActionResult CreatureOrder()
+        public ActionResult CreatureOrder(string UserId)
         {
-            ViewBag.Message = "Your contact page.";
+            //ViewBag.Message = "Your contact page.";
+            ViewBag.UInfo1 = fil1.AspNetUsers.Where(t => t.Id == UserId).ToList().First();
             return View();
         }
         [HttpPost]
@@ -45,17 +46,13 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult CreatureOrder(DbUserOrder book)
         {
-            //var sr = new StreamReader(File.Create("~/Content/image/felp.txt"));
-            //int s = Convert.ToInt32(sr.ReadLine());
-            //sr.Close();
+            book.DateIn = DateTime.Today;
+            
             var val = fil1.DbUserOrder.Count();// Where(t => t.Id == book.Id).ToList().Last().Id;
             book.Id = val + 1;
             ff.Entry(book).State = EntityState.Added;
             ff.SaveChanges();
-            //s++;
-            //var sw = new StreamWriter(System.IO.File.Create("felp.txt"));
-            //sw.WriteLine(s.ToString());
-            //sw.Close();
+           
             return RedirectToAction("Index");
         }
 
@@ -113,6 +110,7 @@ namespace WebApplication1.Controllers
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
+                UserId = userId,
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
