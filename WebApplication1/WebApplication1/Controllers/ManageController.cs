@@ -24,7 +24,7 @@ namespace WebApplication1.Controllers
         {
             
         }
-        db ff = new db();
+        dbb ff = new dbb();
         public ActionResult CreatureOrder(string UserId)
         {
             //ViewBag.Message = "Your contact page.";
@@ -88,7 +88,7 @@ namespace WebApplication1.Controllers
 
         //
         // GET: /Manage/Index
-        db fil1 = new db();
+        dbb fil1 = new dbb();
         public ActionResult UserInfo(string UserId)
         {
             ViewBag.UInfo = fil1.AspNetUsers.Where(t => t.Id == UserId).ToList().First();

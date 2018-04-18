@@ -16,11 +16,9 @@ namespace WebApplication1
         public string Imgs { get; set; }
 
         [Required]
-        [StringLength(50)]
         public string Title { get; set; }
 
         [Required]
-        [StringLength(50)]
         public string Text { get; set; }
     }
 }

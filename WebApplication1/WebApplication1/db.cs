@@ -5,10 +5,10 @@ namespace WebApplication1
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class db : DbContext
+    public partial class dbb : DbContext
     {
-        public db()
-            : base("name=db")
+        public dbb()
+            : base("name=dbb")
         {
         }
 

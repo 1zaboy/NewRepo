@@ -8,12 +8,12 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
-        db fil1 = new db();
+        dbb fil1 = new dbb();
         public ActionResult Index()
         {
             
-            ViewBag.Home_Card = fil1.DtHomeImgInfos;
-            ViewBag.Home_Corouse = fil1.DtHomeImgCarousel;
+            ViewBag.Home_Card = fil1.DtHomeImgInfos.ToList();
+            ViewBag.Home_Corouse = fil1.DtHomeImgCarousel.ToList();
             return View();
         }
 

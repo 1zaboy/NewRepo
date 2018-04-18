@@ -55,7 +55,7 @@ textarea {
     }
     .size_carusel {
         width: 100%;
-        height: 40rem;
+        height: 450px;
     }
 }
 @media (max-width: 1000px) {
@@ -65,7 +65,7 @@ textarea {
     }
     .size_carusel {
         width: 100%;
-        height: 35rem;
+        height: 450px;
     }
 }
 @media (max-width: 768px) {
@@ -75,7 +75,7 @@ textarea {
     }
     .size_carusel {
         width: 100%;
-        height: 30rem;
+        height: 450px;
     }
 }
 
@@ -109,3 +109,32 @@ textarea {
         font-size: 63px;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

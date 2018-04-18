@@ -31,5 +31,7 @@ namespace WebApplication1
 
         public string WayFile { get; set; }
 
+        public string MainName { get; set; }
+
     }
 }
