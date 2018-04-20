@@ -21,9 +21,13 @@
         @foreach (DtHomeImgCarousel f in ViewBag.Home_Corouse)
         {
             var active = i == 0 ? "active" : "";
-            <div class="item @active">
-                <img src="~/Content/image/@f.img" class="img_carusel" style="height: -webkit-fill-available" ift="">
+        <div class="item blurs @active">
+            <img src="~/Content/image/@f.img" class="img_carusel" style="height: -webkit-fill-available" ift="">
+            <div class="carousel-caption">
+                <h3>@f.Title</h3>
+                <p>@f.Text</p>
             </div>
+        </div>
             i++;
         }
     </div>

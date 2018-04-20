@@ -29,7 +29,7 @@ namespace WebApplication1
 
         public string Discription { get; set; }
 
-        public string WayFile { get; set; }
+        public byte[] WayFile { get; set; }
 
         public string MainName { get; set; }
 

@@ -42,19 +42,47 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Index");
         }
 
-        
+
         [HttpPost]
-        public ActionResult CreatureOrder(DbUserOrder book)
+        public ActionResult CreatureOrder(DbUserOrder pic, HttpPostedFileBase uploadImage)
         {
-            book.DateIn = DateTime.Today;
-            
-            var val = fil1.DbUserOrder.Count();// Where(t => t.Id == book.Id).ToList().Last().Id;
-            book.Id = val + 1;
-            ff.Entry(book).State = EntityState.Added;
-            ff.SaveChanges();
            
-            return RedirectToAction("Index");
+                pic.DateIn = DateTime.Today;
+
+                var val = fil1.DbUserOrder.Count();// Where(t => t.Id == book.Id).ToList().Last().Id;
+                pic.Id = val + 1;
+            if (ModelState.IsValid && uploadImage != null)
+            {
+                byte[] imageData = null;
+                // считываем переданный файл в массив байтов
+                using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                {
+                    imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                }
+                // установка массива байтов
+                pic.WayFile = imageData;
+            } 
+                ff.DbUserOrder.Add(pic);
+                ff.SaveChanges();
+
+                return RedirectToAction("Index");
+            
+            return View(pic);
         }
+
+
+        //[HttpPost]
+        //public ActionResult CreatureOrder(DbUserOrder book)
+        //{
+        //    book.DateIn = DateTime.Today;
+            
+        //    var val = fil1.DbUserOrder.Count();// Where(t => t.Id == book.Id).ToList().Last().Id;
+        //    book.Id = val + 1;
+        //    ff.Entry(book).State = EntityState.Added;
+        //    ff.SaveChanges();
+           
+        //    return RedirectToAction("Index");
+        //}
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
