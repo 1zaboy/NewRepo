@@ -1,6 +1,8 @@
 ﻿@using WebApplication1;
 @using WebApplication1.Controllers;
 @using System.Drawing;
+@using Microsoft.AspNet.Identity;
+@*@model WebApplication1.Models.IndexViewModel*@
 @using WebApplication1.help_cs;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,17 +18,17 @@
                     var image0 = imgC.ByteToImage(ss.WayFile);
                     image0 = imgC.RezizeImage(image0, 500, 500);
                     @Html.Raw("<img class=\"card_user_style1\" src=\"data:image/jpeg;base64,"
-                                            + Convert.ToBase64String(imgC.ImageToByte(image0)) + "\" />")
+                                                      + Convert.ToBase64String(imgC.ImageToByte(image0)) + "\" />")
                 }
                 else
                 {
-            <img class="card-img-top card_user_style1" src="~/Content/image/icon_about_us.png" alt="Card image cap">
+                    <img class="card-img-top card_user_style1" src="~/Content/image/icon_about_us.png" alt="Card image cap">
                 }
                 <div class="card-block">
                     <h4 class="card-title text-center">@ss.MainName</h4>
                     <p class="card-text text_left">@ss.Price</p>
                     <p class="card-text text_left">@ss.Discription</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <a class="btn btn-primary" href="@Url.Action("InfoOrder", "Manage", new {UserId = User.Identity.GetUserId(), IdOrder = ss.Id})">Go somewhere</a>
                 </div>
             </div>
         </dov>

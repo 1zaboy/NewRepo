@@ -66,18 +66,24 @@ namespace WebApplication1.Controllers
             
             return View(pic);
         }
-
+        public ActionResult InfoOrder(string UserId, int IdOrder)
+        {
+            //ViewBag.Message = "Your contact page.";
+            ViewBag.Info1 = fil1.AspNetUsers.Where(t => t.Id == UserId).ToList().First();
+            ViewBag.Info2 = fil1.DbUserOrder.Where(t => t.Id == IdOrder).ToList().First();
+            return View();
+        }
 
         //[HttpPost]
         //public ActionResult CreatureOrder(DbUserOrder book)
         //{
         //    book.DateIn = DateTime.Today;
-            
+
         //    var val = fil1.DbUserOrder.Count();// Where(t => t.Id == book.Id).ToList().Last().Id;
         //    book.Id = val + 1;
         //    ff.Entry(book).State = EntityState.Added;
         //    ff.SaveChanges();
-           
+
         //    return RedirectToAction("Index");
         //}
 

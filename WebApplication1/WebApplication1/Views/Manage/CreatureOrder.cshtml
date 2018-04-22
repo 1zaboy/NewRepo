@@ -1,12 +1,14 @@
-﻿@model WebApplication1.Models.DbUserOrder
+﻿@model WebApplication1.DbUserOrder
+    @using Microsoft.AspNet.Identity;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="row">
     <div class="col-lg-12" style="padding: 15px">
- 
+
         @using (Html.BeginForm("CreatureOrder", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
+        {            
+            @Model.User1Id = ViewBag.UInfo1.Id;
         <div class="form-group">
             @Html.LabelFor(m => m.MainName, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
@@ -39,7 +41,7 @@
                 <input type="submit" value="Добавить" />
             </p>
         </fieldset>
-        }
+}
 
         <div>
             @Html.ActionLink("Вернуться к списку", "Index")

@@ -14,12 +14,13 @@
     <div class="col-sm-9" style="padding-left: 0px">
         <div class="jumbotron jumbotron_developers">
             <h1 class="text-center">ASP.NET</h1>
-            <p class="lead" >ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+            <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
         </div>
     </div>
 </div>
 <a type="button" class="btn btn-primary" style="margin: 10px; margin-left: 60px" href="@Url.Action("CreatureOrder", "Manage", new { UserId = @Model.UserId})">Primary</a>
-<div class="tabbable"> <!-- Only required for left/right tabs -->
+<div class="tabbable">
+    <!-- Only required for left/right tabs -->
     <ul class="nav nav-tabs">
         <li class="active">
             <a href="#tab1" data-toggle="tab">Вкладка 1</a>
@@ -62,32 +63,32 @@
         </dd>
         @*
             Номера телефонов можно использовать в качестве второго проверочного фактора для системы двухфакторной проверки подлинности.
-             
+
              В <a href="https://go.microsoft.com/fwlink/?LinkId=403804">этой статье</a>
                 можно узнать, как настроить для этого приложения ASP.NET двухфакторную проверку подлинности с использованием SMS.
-             
+
              Настроив двухфакторную проверку подлинности, раскомментируйте следующий блок
         *@
-          
-            <dt>Номер телефона:</dt>
-            <dd>
-                @(Model.PhoneNumber ?? "None")
-                @if (Model.PhoneNumber != null)
+
+        <dt>Номер телефона:</dt>
+        <dd>
+            @(Model.PhoneNumber ?? "None")
+            @if (Model.PhoneNumber != null)
+            {
+                <br />
+                <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
+                using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
-                    <br />
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
-                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>[<input type="submit" value="Удалить" class="btn-link" />]</text>
-                    }
+                    @Html.AntiForgeryToken()
+                    <text>[<input type="submit" value="Удалить" class="btn-link" />]</text>
                 }
-                else
-                {
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")</text>
-                }
-            </dd>
-        
+            }
+            else
+            {
+                <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")</text>
+            }
+        </dd>
+
         <dt>Двухфакторная проверка подлинности:</dt>
         <dd>
             <p>
@@ -95,25 +96,25 @@
                 можно узнать, как настроить двухфакторную проверку подлинности для этого приложения ASP.NET.
             </p>
             @if (Model.TwoFactor)
+            {
+                using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
-                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Включено
+                    @Html.AntiForgeryToken()
+                    <text>Включено
                         <input type="submit" value="Отключить" class="btn btn-link" />
-                        </text>
-                    }
+                    </text>
                 }
-                else
+            }
+            else
+            {
+                using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
-                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Отключено
+                    @Html.AntiForgeryToken()
+                    <text>Отключено
                         <input type="submit" value="Включить" class="btn btn-link" />
-                        </text>
-                    }
+                    </text>
                 }
+            }
         </dd>
     </dl>
 </div>
