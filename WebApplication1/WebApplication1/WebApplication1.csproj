@@ -207,6 +207,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="help_cs\img.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -216,6 +217,19 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\image\belIt.png" />
+    <Content Include="Content\image\bit.png" />
+    <Content Include="Content\image\c1.png" />
+    <Content Include="Content\image\c2.jpg" />
+    <Content Include="Content\image\c3.jpg" />
+    <Content Include="Content\image\Desert.jpg" />
+    <Content Include="Content\image\git_ico.png" />
+    <Content Include="Content\image\Hydrangeas.jpg" />
+    <Content Include="Content\image\icon_about_us.png" />
+    <Content Include="Content\image\Jellyfish.jpg" />
+    <Content Include="Content\image\Koala.jpg" />
+    <Content Include="Content\image\logo.png" />
+    <Content Include="Content\image\logo1.png" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

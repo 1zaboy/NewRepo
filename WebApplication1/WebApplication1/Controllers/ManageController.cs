@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebApplication1.Models;
-
+using System.Drawing;
 namespace WebApplication1.Controllers
 {
     using System.IO;
@@ -33,16 +33,13 @@ namespace WebApplication1.Controllers
         }
         [HttpPost]
         public ActionResult Create(DbUserOrder book)
-        {
-          
+        {          
             ff.DbUserOrder.Add(book);
             ff.SaveChanges();
-          
-         
             return RedirectToAction("Index");
         }
 
-
+      
         [HttpPost]
         public ActionResult CreatureOrder(DbUserOrder pic, HttpPostedFileBase uploadImage)
         {
