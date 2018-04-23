@@ -1,4 +1,10 @@
-﻿@{
+﻿@model WebApplication1.DbUserOrder
+@using Microsoft.AspNet.Identity;
+@{
+    /**/
+
+    /**/
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="row">
@@ -21,13 +27,44 @@
     <h1>File</h1>
     <div>
         @Html.Raw("<img class=\"card_user_style1\" src=\"data:image/jpeg;base64,"
-                                                           + Convert.ToBase64String(ViewBag.Info2.WayFile) + "\" />");
+                                                                                         + Convert.ToBase64String(ViewBag.Info2.WayFile) + "\" />");
     </div>
     <h1>Discription</h1>
     <div>
         @ViewBag.Info2.Discription;
     </div>
 </div>
+@if (ViewBag.Info2.User1Id != User.Identity.GetUserId())
+{
+
+    using (Html.BeginForm("InfoOrder0", "Manage", new { book = ViewBag.Info2.Id }, FormMethod.Post))
+    {
+            
+            @Html.ValidationSummary(true)
+            <fieldset>
+
+                <p>
+                    <input type="submit" value="1" name="add" />
+                </p>
+            </fieldset>
+    }
+
+    //DbUserOrder tt = new DbUserOrder() { Id = ViewBag.Info2.Id, User1Id = ViewBag.Info2.User1Id, User2Id = ViewBag.Info2.User2Id, DateIn = ViewBag.Info2.DateIn, DateOut = ViewBag.Info2.DateOut, Price = ViewBag.Info2.Price, Discription = ViewBag.Info2.Discription, WayFile = ViewBag.Info2.WayFile, MainName = ViewBag.Info2.MainName };
+
+    @*<form style="margin: 10px; margin-left: 60px" method="post" href="@Url.Action("InfoOrder", "Manage",new { book = ViewBag.Info2})">
+
+        @Html.EditorFor(m => tt)
+        @Html.EditorForModel()
+        <fieldset>
+            <p>
+                <input type="submit" value="Добавить" />
+            </p>
+        </fieldset>
+    </form>*@
+
+    @*<a type="button" class="btn btn-primary" style="margin: 10px; margin-left: 60px" href="@Url.Action("InfoOrder0", "Manage", new { book = ViewBag.Info2.Id })">Customer</a>*@
+}
+/**/
 
 
-<a type="button" class="btn btn-primary" style="margin: 10px; margin-left: 60px" href="@Url.Action("UserInfo", "Manage", new { UserId = ViewBag.Info1.Id})">Customer</a>
+<a type="button" class="btn btn-primary" style="margin: 10px; margin-left: 60px" href="@Url.Action("UserInfo", "Manage", new { UserId = ViewBag.Info2.User1Id})">Customer</a>

@@ -1,4 +1,5 @@
 ﻿@model WebApplication1.Models.IndexViewModel
+    @using Microsoft.AspNet.Identity;
 @{
     ViewBag.Title = "Управление";
 }
@@ -18,23 +19,33 @@
         </div>
     </div>
 </div>
-<a type="button" class="btn btn-primary" style="margin: 10px; margin-left: 60px" href="@Url.Action("CreatureOrder", "Manage", new { UserId = @Model.UserId})">Primary</a>
+<a type="button" class="btn btn-primary" style="margin: 10px; margin-left: 60px" href="@Url.Action("CreatureOrder", "Manage")">Primary</a>
 <div class="tabbable">
     <!-- Only required for left/right tabs -->
     <ul class="nav nav-tabs">
         <li class="active">
-            <a href="#tab1" data-toggle="tab">Вкладка 1</a>
+            <a href="#tab1" data-toggle="tab">Заказы</a>
         </li>
         <li>
-            <a href="#tab2" data-toggle="tab">Вкладка 2</a>
+            <a href="#tab2" data-toggle="tab">Разработка</a>
         </li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="tab1">
-            <p>Я первая секция.</p>
+            @foreach (DbUserOrder ss in ViewBag.Info1)
+            {
+            <p>
+                <a onclick="window.location='@Url.Action("InfoOrder", "Manage", new { IdOrder = @ss.Id})#';">@ss.MainName+" "+@ss.Price+" "+@ss.DateOut</a>
+            </p>
+            }
         </div>
         <div class="tab-pane" id="tab2">
-            <p>Привет, я 2-я секция.</p>
+            @foreach (DbUserOrder ss in ViewBag.Info2)
+            {
+            <p>
+                <a onclick="window.location='@Url.Action("InfoOrder", "Manage", new { IdOrder = @ss.Id})#';">@ss.MainName+" "+@ss.Price+" "+@ss.DateOut</a>
+            </p>
+            }
         </div>
     </div>
 </div>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,12 +24,11 @@ namespace WebApplication1.Controllers
             
         }
         dbb ff = new dbb();
-        public ActionResult CreatureOrder(string UserId)
+        public ActionResult CreatureOrder()
         {
-            //ViewBag.Message = "Your contact page.";
-            ViewBag.UInfo1 = fil1.AspNetUsers.Where(t => t.Id == UserId).ToList().First();
             return View();
         }
+        
         [HttpPost]
         public ActionResult Create(DbUserOrder book)
         {          
@@ -43,10 +41,10 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult CreatureOrder(DbUserOrder pic, HttpPostedFileBase uploadImage)
         {
-           
-                pic.DateIn = DateTime.Today;
 
-                var val = fil1.DbUserOrder.Count();// Where(t => t.Id == book.Id).ToList().Last().Id;
+            pic.DateIn = DateTime.Today;
+            pic.User1Id = User.Identity.GetUserId();
+                var val = ff.DbUserOrder.Count();// Where(t => t.Id == book.Id).ToList().Last().Id;
                 pic.Id = val + 1;
             if (ModelState.IsValid && uploadImage != null)
             {
@@ -66,12 +64,20 @@ namespace WebApplication1.Controllers
             
             return View(pic);
         }
-        public ActionResult InfoOrder(string UserId, int IdOrder)
+        public ActionResult InfoOrder(int IdOrder)
         {
-            //ViewBag.Message = "Your contact page.";
-            ViewBag.Info1 = fil1.AspNetUsers.Where(t => t.Id == UserId).ToList().First();
-            ViewBag.Info2 = fil1.DbUserOrder.Where(t => t.Id == IdOrder).ToList().First();
+            //ViewBag.Message = "Your contact page.";            
+            ViewBag.Info2 = ff.DbUserOrder.Where(t => t.Id == IdOrder).ToList().First();
             return View();
+        }
+        [HttpPost]
+        public ActionResult InfoOrder0(int book)
+        {
+            DbUserOrder I = ff.DbUserOrder.Where(t => t.Id == book).ToList().First();
+            I.User2Id = User.Identity.GetUserId();
+            ff.Entry(I).State = EntityState.Modified;
+            ff.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         //[HttpPost]
@@ -118,11 +124,10 @@ namespace WebApplication1.Controllers
         }
 
         //
-        // GET: /Manage/Index
-        dbb fil1 = new dbb();
+        // GET: /Manage/Index        
         public ActionResult UserInfo(string UserId)
         {
-            ViewBag.UInfo = fil1.AspNetUsers.Where(t => t.Id == UserId).ToList().First();
+            ViewBag.UInfo = ff.AspNetUsers.Where(t => t.Id == UserId).ToList().First();
 
             var tt = 0;
             return View();
@@ -137,8 +142,10 @@ namespace WebApplication1.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "Ваш номер телефона добавлен."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Ваш номер телефона удален."
                 : "";
-
             var userId = User.Identity.GetUserId();
+            ViewBag.Info1 = ff.DbUserOrder.Where(t => t.User1Id == userId).ToList();
+            ViewBag.Info2 = ff.DbUserOrder.Where(t => t.User2Id == userId).ToList();
+            
             var model = new IndexViewModel
             {
                 UserId = userId,

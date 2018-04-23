@@ -28,7 +28,7 @@
                     <h4 class="card-title text-center">@ss.MainName</h4>
                     <p class="card-text text_left">@ss.Price</p>
                     <p class="card-text text_left">@ss.Discription</p>
-                    <a class="btn btn-primary" href="@Url.Action("InfoOrder", "Manage", new {UserId = User.Identity.GetUserId(), IdOrder = ss.Id})">Go somewhere</a>
+                    <a class="btn btn-primary" href="@Url.Action("InfoOrder", "Manage", new {IdOrder = ss.Id})">Go somewhere</a>
                 </div>
             </div>
         </dov>
