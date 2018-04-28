@@ -1,17 +1,9 @@
-/*
+﻿/*
 	Author: Nemets Yury;
 	Site: http://www.sitehere.ru;
 */
 
 @import url(http://fonts.googleapis.com/css?family=Roboto:300,400,900&subset=latin,cyrillic);
-
-/*body {
-  font:normal 100% 'Roboto', sans-serif;
-  margin: 0;
-  padding: 0;
-  background: url(../images/bg-rr.jpg) #F3F0EB;
-  background-size: cover;
-}*/
 
 
 .content {
@@ -81,8 +73,8 @@
   padding: 1em 0;
   background:#3B3B3B;
   font-weight: 300;
-  z-index: 8;
-  height: 50px;
+  z-index: 6;
+  height: 63px;
   -webkit-transition:all 0.35s linear 0.2s;
   transition:all 0.35s linear 0.2s;
 }
@@ -101,7 +93,7 @@
 }
 
 .bulletsBlock > div:hover p.titleBullet{
-  bottom:80px;
+  bottom:60px;
 }
 
 .bulletsBlock > div:hover p.hideText{
