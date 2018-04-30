@@ -36,8 +36,43 @@ namespace WebApplication1.Controllers
             ff.SaveChanges();
             return RedirectToAction("Index");
         }
+        public ActionResult SettingAccount()
+        {
+            var iid = User.Identity.GetUserId();
+            ViewBag.Account = ff.AspNetUsers.Where(t => t.Id == iid).ToList().First();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult SettingAccount(AspNetUsers pic, HttpPostedFileBase uploadImage)
+        {
+            var iid = User.Identity.GetUserId();
+            var U = ff.AspNetUsers.Where(t => t.Id == iid).ToList().First();
+            if (pic.UserName != null)
+                U.UserName = pic.UserName;
+            if (pic.Description != null)
+                U.Description = pic.Description;
+            
+                if (ModelState.IsValid && uploadImage != null)
+                {
+                    byte[] imageData = null;
+                    // считываем переданный файл в массив байтов
+                    using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                    {
+                        imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                    }
+                // установка массива байтов
+                if (imageData != null)
+                    U.Icon = imageData;
+                }
+            
+            ff.Entry(U).State = EntityState.Modified;
+            ff.SaveChanges();          
 
-      
+            return RedirectToAction("Index", "Manage");
+
+            return View(pic);
+        }
+
         [HttpPost]
         public ActionResult CreatureOrder(DbUserOrder pic, HttpPostedFileBase uploadImage)
         {
@@ -145,7 +180,7 @@ namespace WebApplication1.Controllers
             var userId = User.Identity.GetUserId();
             ViewBag.Info1 = ff.DbUserOrder.Where(t => t.User1Id == userId).ToList();
             ViewBag.Info2 = ff.DbUserOrder.Where(t => t.User2Id == userId).ToList();
-            
+            ViewBag.Acc = ff.AspNetUsers.Where(t => t.Id == userId).ToList().First();
             var model = new IndexViewModel
             {
                 UserId = userId,

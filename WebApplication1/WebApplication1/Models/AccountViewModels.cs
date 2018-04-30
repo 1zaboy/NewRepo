@@ -64,6 +64,7 @@ namespace WebApplication1.Models
     public class RegisterViewModel
     {
         [Required]
+        [StringLength(256, ErrorMessage = "Слишком большое имя.")]
         [Display(Name = "Имя")]
         public string Name { get; set; }
 

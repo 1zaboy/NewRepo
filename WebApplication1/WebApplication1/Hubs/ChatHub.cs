@@ -7,16 +7,19 @@ using WebApplication1.Models;
 using Microsoft.AspNet.SignalR.Hubs;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 namespace WebApplication1.Hubs
 {
     public class ChatHub : Hub
     {
         static List<User> Users = new List<User>();
-
+        public Regex R = new Regex(@"\s");
         // Отправка сообщений
         public void Send(string name, string message)
         {
-            Clients.All.addMessage(name, message);
+            string str = R.Replace(message, "");
+            if ("" != str)
+                Clients.All.addMessage(name, message);
         }
 
         // Подключение нового пользователя
@@ -24,16 +27,19 @@ namespace WebApplication1.Hubs
         {
             var id = Context.ConnectionId;
 
-
-            if (!Users.Any(x => x.ConnectionId == id))
+            string str = R.Replace(userName, "");
+            if ("" != str)
             {
-                Users.Add(new User { ConnectionId = id, Name = userName });
+                if (!Users.Any(x => x.ConnectionId == id))
+                {
+                    Users.Add(new User { ConnectionId = id, Name = userName });
 
-                // Посылаем сообщение текущему пользователю
-                Clients.Caller.onConnected(id, userName, Users);
+                    // Посылаем сообщение текущему пользователю
+                    Clients.Caller.onConnected(id, userName, Users);
 
-                // Посылаем сообщение всем пользователям, кроме текущего
-                Clients.AllExcept(id).onNewUserConnected(id, userName);
+                    // Посылаем сообщение всем пользователям, кроме текущего
+                    Clients.AllExcept(id).onNewUserConnected(id, userName);
+                }
             }
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using WebApplication1;
 namespace WebApplication1.Controllers
 {
@@ -33,7 +34,15 @@ namespace WebApplication1.Controllers
         public ActionResult Orders()
         {
             ViewBag.Message = "Your contact page.";
-            ViewBag.Ord = fil1.DbUserOrder;
+            var iid = User.Identity.GetUserId();
+            if (iid != null)
+            {
+                ViewBag.Ord = fil1.DbUserOrder.Where(t => t.User2Id != iid).ToList();
+            }
+            else
+            {
+                ViewBag.Ord = fil1.DbUserOrder;
+            }
             return View();
         }
         public ActionResult Developers()
