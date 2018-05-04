@@ -304,10 +304,19 @@ table {
      -moz-box-sizing: border-box;
           box-sizing: border-box;
 }
-
+ford {
+    width: 750px;
+    border: solid 1px black;
+    background: lightblue;
+    font-size: 20pt;
+    padding: 0.5in;
+    margin: 150px 70px;
+    text-align:justify;
+}
 html {
   font-size: 62.5%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -337,6 +346,10 @@ textarea {
 a {
   color: #428bca;
   text-decoration: none;
+} 
+a > ul
+{
+    text-overflow:ellipsis;
 }
 
 a:hover,
@@ -405,10 +418,11 @@ p {
 }
 
 .lead {
-  margin-bottom: 20px;
-  font-size: 16.099999999999998px;
-  font-weight: 200;
-  line-height: 1.4;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    font-size: 16.099999999999998px;
+    font-weight: 200;
+    line-height: 1.4;
 }
 
 @media (min-width: 768px) {
@@ -726,7 +740,7 @@ code {
 
 pre {
   display: block;
-  padding: 9.5px;
+  padding: 9.5px;        
   margin: 0 0 10px;
   font-size: 13px;
   line-height: 1.428571429;
@@ -757,8 +771,6 @@ pre code {
 }
 
 .container {
-  padding-right: 15px;
-  padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
 }
