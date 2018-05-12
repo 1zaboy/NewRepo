@@ -48,7 +48,8 @@ namespace WebApplication1.Controllers
         public ActionResult Developers()
         {
             ViewBag.Message = "Your contact page.";
-            ViewBag.UserListOnPrint = fil1.AspNetUsers;
+            ViewBag.UserListOnPrint = fil1.AspNetUsers.OrderBy(t=>t.Id).Take(10);
+            numb = 0;
             return View();
         }
   
@@ -56,12 +57,30 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult Developers(AspNetUsers pic, HttpPostedFileBase uploadImage)
         {
-            var r = ff.AspNetUsers.Where(t => t.UserName == pic.UserName).ToList();
+            var r = ff.AspNetUsers.Where(t => t.UserName.Contains(pic.UserName)).ToList();
             
             ViewBag.UserListOnPrint = r;
             //return RedirectToAction("Developers");
 
             return View();
+        }
+        public int numb = 0;
+        public ActionResult Developers_next()
+        {
+            ViewBag.Message = "Your contact page.";
+            numb += 10;
+            ViewBag.UserListOnPrint = fil1.AspNetUsers.OrderBy(t=>t.Id).Skip(numb).Take(10);
+            return View("Developers");
+        }
+
+        public ActionResult Developers_early()
+        {
+            ViewBag.Message = "Your contact page.";
+            numb -= 10;
+            if (numb < 0)
+                numb = 0;
+            ViewBag.UserListOnPrint = fil1.AspNetUsers.OrderBy(t => t.Id).Skip(numb).Take(10);
+            return View("Developers");
         }
     }
 }

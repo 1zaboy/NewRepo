@@ -5,20 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <head>
-    <meta charset="UTF-8">
-
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/Site.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href=">
-    <link href="@Url.Content("~/Content/StyleToSearchm.css")" rel="stylesheet" type="text/css" />
-
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+   
 </head>
 <div class="jumbotron jumbotron_developers">
     <h1 class="text-center">Developer Board</h1>
     <h2 class="text-center">Список разработчиков</h2>
 </div>
+
+
 @using (Html.BeginForm("Developers", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
 <div class="form-group">
@@ -58,4 +52,11 @@
     </table>
 </div>
 
-
+<ul class="pagination">
+    <li class="page-item">
+        <a class="page-link" href="@Url.Action("Developers_early", "Home")">Previous</a>
+    </li>
+    <li class="page-item">
+    <a class="page-link" href="@Url.Action("Developers_next", "Home")">Next</a>
+    </li>
+</ul>
