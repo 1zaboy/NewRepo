@@ -1,4 +1,7 @@
-﻿@{
+﻿@model WebApplication1.AspNetUsers
+@{
+    /**/
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <head>
@@ -14,33 +17,44 @@
 </head>
 <div class="jumbotron jumbotron_developers">
     <h1 class="text-center">Developer Board</h1>
-    <h2 class="text-center" >Список разработчиков</h2>
+    <h2 class="text-center">Список разработчиков</h2>
 </div>
-<form action="" method="get">
-    <input name="s" placeholder="Искать здесь..." type="search">
-    <button type="submit">Поиск</button>
-</form>
+@using (Html.BeginForm("Developers", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+<div class="form-group">
+    @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+    <div class="col-md-3">
+        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+    </div>
+    <div class="col-md-5">
+        <input type="submit" value="Поиск" class="btn btn-default" />
+    </div>
+</div>
+    
+}
+
 
 <div class="container">
     <table class="table table-hover">
         <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            
-        </tr>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+
+            </tr>
         </thead>
-        @foreach(AspNetUsers ss in ViewBag.UserListOnPrint)
-        { 
-        <tbody>
-        <tr onclick="window.location='@Url.Action("UserInfo", "Manage", new { UserId = @ss.Id})#';">
-            <td>@ss.UserName</td>
-            <td>@ss.Description</td>
-            
-        </tr>
-        </tbody>
+        @foreach (AspNetUsers ss in ViewBag.UserListOnPrint)
+        {
+            <tbody>
+                <tr onclick="window.location='@Url.Action("UserInfo", "Manage", new { UserId = @ss.Id })#';">
+                    <td>@ss.UserName</td>
+                    <td>@ss.Description</td>
+
+                </tr>
+            </tbody>
         }
-        
+
     </table>
 </div>
 

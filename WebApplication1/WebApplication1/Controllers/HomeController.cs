@@ -51,5 +51,17 @@ namespace WebApplication1.Controllers
             ViewBag.UserListOnPrint = fil1.AspNetUsers;
             return View();
         }
+  
+        public dbb ff = new dbb();
+        [HttpPost]
+        public ActionResult Developers(AspNetUsers pic, HttpPostedFileBase uploadImage)
+        {
+            var r = ff.AspNetUsers.Where(t => t.UserName == pic.UserName).ToList();
+            
+            ViewBag.UserListOnPrint = r;
+            //return RedirectToAction("Developers");
+
+            return View();
+        }
     }
 }

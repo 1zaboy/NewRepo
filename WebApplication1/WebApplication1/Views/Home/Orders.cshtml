@@ -13,18 +13,18 @@
         <dov class="_col-lg-4">
             <div class="card text-center" style="width: 70%; margin: auto">
                 @if (ss.WayFile != null)
-    {
-        var imgC = new img();
-        var image0 = imgC.ByteToImage(ss.WayFile);
-        image0 = imgC.RezizeImage(image0, 500, 500);
-            @Html.Raw("<img class=\"card_user_style1\" src=\"data:image/jpeg;base64,"
-                                       + Convert.ToBase64String(imgC.ImageToByte(image0)) + "\" />")
-}
-else
-{
-            <img class="card-img-top card_user_style1" src="~/Content/image/icon_about_us.png" alt="Card image cap">
-}
-                
+                {
+                    var imgC = new img();
+                    var image0 = imgC.ByteToImage(ss.WayFile);
+                    image0 = imgC.RezizeImage(image0, 500, 500);
+                    @Html.Raw("<img class=\"card_user_style1\" src=\"data:image/jpeg;base64,"
+                                                    + Convert.ToBase64String(imgC.ImageToByte(image0)) + "\" />")
+                }
+                else
+                {
+                    <img class="card-img-top card_user_style1" src="~/Content/image/icon_about_us.png" alt="Card image cap">
+                }
+
                 <div class="card-block">
                     <h4 class="card-title text-center">@ss.MainName</h4>
                     <p class="card-text text_left">@ss.Price</p>

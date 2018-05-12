@@ -10,35 +10,41 @@
     
 </head>
 <body>
+    @if (User.Identity.GetUserName() != "")
+    {
+        <h2>Чат-комната</h2>
 
-    <h2>Чат-комната</h2>
-
-    <div class="main">
-        <div id="loginBlock">
-            Введите логин:<br />
-            <input id="txtUserName" value="@User.Identity.GetUserName()"/>
-            <input id="btnLogin" type="button" value="Войти" />
-        </div>
-        <div id="chatBody">
-            <div id="header"></div>
-            <div id="inputForm">
-                <input type="text" id="message" />
-                <input type="button" id="sendmessage" value="Отправить" />
+        <div class="main">
+            <div id="loginBlock">
+                Введите логин:<br />
+                <input id="txtUserName" value="@User.Identity.GetUserName()" />
+                <input id="btnLogin" type="button" value="Войти" />
             </div>
-            <div id="chatroom"></div>
+            <div id="chatBody">
+                <div id="header"></div>
+                <div id="inputForm">
+                    <input type="text" id="message" />
+                    <input type="button" id="sendmessage" value="Отправить" />
+                </div>
+                <div id="chatroom"></div>
 
-            <div id="chatusers">
-                <p><b>Все пользователи</b></p>
+                <div id="chatusers">
+                    <p><b>Все пользователи</b></p>
+                </div>
             </div>
+            <input id="hdId" type="hidden" />
+            <input id="username" type="hidden" />
         </div>
-        <input id="hdId" type="hidden" />
-        <input id="username" type="hidden" />
-    </div>
 
-    
 
-    <!--Ссылка на автоматически сгенерированный скрипт хаба SignalR -->
-    <script src="~/signalr/hubs"></script>
-    <script src="~/Scripts/util.js"></script>
+
+        <!--Ссылка на автоматически сгенерированный скрипт хаба SignalR -->
+        <script src="~/signalr/hubs"></script>
+        <script src="~/Scripts/util.js"></script>
+    }
+    else
+    {
+        @Html.Action("Login", "Account")
+    }
 </body>
 </html>

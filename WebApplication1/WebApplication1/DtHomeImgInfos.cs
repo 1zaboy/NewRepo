@@ -20,5 +20,6 @@ namespace WebApplication1
 
         [Required]
         public string Text { get; set; }
+        public string Link { get; set; }
     }
 }
