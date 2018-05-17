@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebApplication1.Models;
 using System.Drawing;
+using System.IO;
 namespace WebApplication1.Controllers
 {
     using System.IO;
@@ -40,37 +41,51 @@ namespace WebApplication1.Controllers
         {
             var iid = User.Identity.GetUserId();
             ViewBag.Account = ff.AspNetUsers.Where(t => t.Id == iid).ToList().First();
+            
             return View();
         }
         [HttpPost]
         public ActionResult SettingAccount(AspNetUsers pic, HttpPostedFileBase uploadImage)
         {
+            bool test = false; 
             var iid = User.Identity.GetUserId();
             var U = ff.AspNetUsers.Where(t => t.Id == iid).ToList().First();
             if (pic.UserName != null)
+            {
                 U.UserName = pic.UserName;
+                test = true;
+            }
             if (pic.Description != null)
+            {
                 U.Description = pic.Description;
-            
-                if (ModelState.IsValid && uploadImage != null)
+                test = true;
+            }
+            if (uploadImage != null)
+            {
+                var StrFile = uploadImage.FileName;
+                if (".png" == Path.GetExtension(StrFile) || ".jpg" == Path.GetExtension(StrFile))
                 {
+
                     byte[] imageData = null;
                     // считываем переданный файл в массив байтов
                     using (var binaryReader = new BinaryReader(uploadImage.InputStream))
                     {
                         imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
                     }
-                // установка массива байтов
-                if (imageData != null)
+                    // установка массива байтов
                     U.Icon = imageData;
+                    test = true;
                 }
-            
-            ff.Entry(U).State = EntityState.Modified;
-            ff.SaveChanges();          
+            }
+            if (test)
+            {
+                ff.Entry(U).State = EntityState.Modified;
+                ff.SaveChanges();
+                return RedirectToAction("Index", "Manage");
+            }
 
-            return RedirectToAction("Index", "Manage");
-
-            return View(pic);
+            ViewBag.Report = "Error";
+            return View();
         }
 
         [HttpPost]

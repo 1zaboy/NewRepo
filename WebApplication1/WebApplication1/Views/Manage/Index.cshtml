@@ -26,7 +26,10 @@
         </div>
     </div>
 </div>
+@if (ViewBag.Acc.Id == User.Identity.GetUserId())
+{
 <a type="button" class="btn btn-primary" style="margin: 10px; margin-left: 60px" href="@Url.Action("SettingAccount", "Manage")">Setting</a>
+}
 <a type="button" class="btn btn-primary" style="margin: 10px; margin-left: 60px" href="@Url.Action("CreatureOrder", "Manage")">Primary</a>
 <div class="tabbable">
     <!-- Only required for left/right tabs -->
