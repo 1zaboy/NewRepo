@@ -18,7 +18,7 @@
                     var image0 = imgC.ByteToImage(ss.WayFile);
                     image0 = imgC.RezizeImage(image0, 500, 500);
                     @Html.Raw("<img class=\"card_user_style1\" src=\"data:image/jpeg;base64,"
-                                                    + Convert.ToBase64String(imgC.ImageToByte(image0)) + "\" />")
+                                                         + Convert.ToBase64String(imgC.ImageToByte(image0)) + "\" />")
                 }
                 else
                 {
@@ -35,3 +35,14 @@
         </dov>
     }
 </div>
+@if (ViewBag.Bool)
+{
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" href="@Url.Action("Order_early", "Home")">Previous</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="@Url.Action("Order_next", "Home")">Next</a>
+        </li>
+    </ul>
+}
