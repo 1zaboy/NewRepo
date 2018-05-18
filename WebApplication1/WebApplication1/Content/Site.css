@@ -186,7 +186,7 @@ div.blurs:hover > img.img_carusel {
 
 .CatText {
     text-overflow: ellipsis; /* will make [...] at the end */
-    width: 80px; /* change to your preferences */
+    width: 150px; /* change to your preferences */
     white-space: nowrap; /* paragraph to one line */
     overflow: hidden; /* older browsers */
 }

@@ -114,6 +114,10 @@ namespace WebApplication1.Controllers
             
             return View(pic);
         }
+        public ActionResult WebDescription()
+        {         
+            return View();
+        }
         public ActionResult InfoOrder(int IdOrder)
         {
             //ViewBag.Message = "Your contact page.";            

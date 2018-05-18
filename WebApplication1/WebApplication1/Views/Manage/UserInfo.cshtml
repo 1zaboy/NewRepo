@@ -7,24 +7,24 @@
 }
 
 
-    <div class="row">
-        <div class="col-sm-3">
-            @if (ViewBag.UInfo.Icon != null)
-            {
-                @Html.Raw("<img class=\"card_user_style1\" src=\"data:image/jpeg;base64," + Convert.ToBase64String(ViewBag.UInfo.Icon) + "\" />");
-            }
-            else
-            {
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxHGpR68174qJmNG1yZvsYxY62PneWPB-E5X1uOH2bRzV16qhs_w" style="width: 100%; height: 100%">
-            }
+<div class="row">
+    <div class="col-sm-3">
+        @if (ViewBag.UInfo.Icon != null)
+        {
+            @Html.Raw("<img class=\"card_user_style1\" src=\"data:image/jpeg;base64," + Convert.ToBase64String(ViewBag.UInfo.Icon) + "\" />");
+        }
+        else
+        {
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxHGpR68174qJmNG1yZvsYxY62PneWPB-E5X1uOH2bRzV16qhs_w" style="width: 100%; height: 100%">
+        }
+    </div>
+    <div class="col-sm-9" style="padding-left: 0px">
+        <div class="jumbotron jumbotron_developers">
+            <h2 class="text-center EnText">@ViewBag.UInfo.UserName</h2>
+            <p class="lead EnText">@ViewBag.UInfo.Description</p>
         </div>
-        <div class="col-sm-9" style="padding-left: 0px">
-            <div class="jumbotron jumbotron_developers">
-                <h1 class="text-center">@ViewBag.UInfo.UserName</h1>
-                <p class="lead">@ViewBag.UInfo.Description</p>
-            </div>
-        </div>
-    </div>    
+    </div>
+</div>    
     <div class="tabbable">
         <!-- Only required for left/right tabs -->
         <ul class="nav nav-tabs">
