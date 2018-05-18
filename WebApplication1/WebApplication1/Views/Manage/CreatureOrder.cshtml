@@ -1,12 +1,15 @@
 ﻿@model WebApplication1.DbUserOrder
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+                /**/
+
+                Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@Styles.Render("~/Content/SettingAccount")
 <div class="row">
     <div class="col-lg-12" style="padding: 15px">
 
         @using (Html.BeginForm("CreatureOrder", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {            
+    {
         <div class="form-group">
             @Html.LabelFor(m => m.MainName, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
@@ -26,18 +29,37 @@
             </div>
         </div>
         @Html.ValidationSummary(true)
-        
+
         <fieldset>
-            <legend>Добавить изображение</legend>
-            <div class="editor-label">Файл изображения</div>
+            <legend>Изменить иконку</legend>            
             <div class="editor-field">
-                <input type="file" name="uploadImage" accept=".jpg, .jpeg, .png"/>
+                @*<input type="file" name="uploadImage" />*@
+
+                <div class="large-12 columns">
+
+                    <h1>Load A Photo</h1>
+                    <input type="file" name="uploadImage" id="the-photo-file-field" accept=".jpg, .jpeg, .png">
+                    <div class="row">
+
+                        <div class="col-lg-12" id="preview">
+                            <!--image will be inserted here-->
+                        </div>
+
+                    </div>
+                    <div id="data" class="large-8 columns">
+                        <h2 id="name"></h2>
+                        <p id="size"></p>
+                        <p id="type"></p>
+                    </div>
+                </div>
             </div>
             <p>
-                <input type="submit" value="Добавить" />
+                <input type="submit" class="btn btn-group" value="Добавить" />
             </p>
+
         </fieldset>
-        }
+        @Scripts.Render("~/Scripts/SettingAccount")
+}
 
         <div>
             @Html.ActionLink("Вернуться к списку", "Index")

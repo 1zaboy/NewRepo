@@ -21,8 +21,8 @@
     </div>
     <div class="col-sm-9" style="padding-left: 0px">
         <div class="jumbotron jumbotron_developers"> 
-            <h1 class="text-center">@ViewBag.Acc.UserName</h1>
-            <p class="lead">@ViewBag.Acc.Description</p>
+            <h2 class="text-center EnText">@ViewBag.Acc.UserName</h2>
+            <p class="lead EnText">@ViewBag.Acc.Description</p>
         </div>
     </div>
 </div>
@@ -46,7 +46,7 @@
             @foreach (DbUserOrder ss in ViewBag.Info1)
             {
             <p>
-                <a onclick="window.location='@Url.Action("InfoOrder", "Manage", new { IdOrder = @ss.Id})#';">@ss.MainName+" "+@ss.Price+" "+@ss.DateOut</a>
+                <a onclick="window.location='@Url.Action("InfoOrder", "Manage", new { IdOrder = @ss.Id})#';">Name: (@ss.MainName)  Price: (@ss.Price)  Date Out: (@ss.DateOut)</a>
             </p>
             }
         </div>
@@ -54,7 +54,7 @@
             @foreach (DbUserOrder ss in ViewBag.Info2)
             {
             <p>
-                <a onclick="window.location='@Url.Action("InfoOrder", "Manage", new { IdOrder = @ss.Id})#';">@ss.MainName+" "+@ss.Price+" "+@ss.DateOut</a>
+                <a onclick="window.location='@Url.Action("InfoOrder", "Manage", new { IdOrder = @ss.Id})#';">Name: (@ss.MainName)  Price: (@ss.Price)  Date Out: (@ss.DateOut)</a>
             </p>
             }
         </div>

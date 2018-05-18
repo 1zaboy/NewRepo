@@ -130,18 +130,7 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Index");
         }
 
-        //[HttpPost]
-        //public ActionResult CreatureOrder(DbUserOrder book)
-        //{
-        //    book.DateIn = DateTime.Today;
-
-        //    var val = fil1.DbUserOrder.Count();// Where(t => t.Id == book.Id).ToList().Last().Id;
-        //    book.Id = val + 1;
-        //    ff.Entry(book).State = EntityState.Added;
-        //    ff.SaveChanges();
-
-        //    return RedirectToAction("Index");
-        //}
+    
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
@@ -178,7 +167,8 @@ namespace WebApplication1.Controllers
         public ActionResult UserInfo(string UserId)
         {
             ViewBag.UInfo = ff.AspNetUsers.Where(t => t.Id == UserId).ToList().First();
-
+            ViewBag.Info1 = ff.DbUserOrder.Where(t => t.User1Id == UserId).ToList();
+            ViewBag.Info2 = ff.DbUserOrder.Where(t => t.User2Id == UserId).ToList();
             var tt = 0;
             return View();
         }

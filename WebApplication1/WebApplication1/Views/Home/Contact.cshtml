@@ -6,9 +6,10 @@
 <html>
 <head>
     
-
+    
     
 </head>
+@Styles.Render("~/Content/StyleSheet1")
 <body>
     @if (User.Identity.GetUserName() != "")
     {
@@ -17,17 +18,20 @@
         <div class="main">
             <div id="loginBlock">
                 Введите логин:<br />
-                <input id="txtUserName" value="@User.Identity.GetUserName()" />
-                <input id="btnLogin" type="button" value="Войти" />
+
+                <input id="txtUserName" class="form-control" value="@User.Identity.GetUserName()" />
+                <input id="btnLogin" class="btn btn-block" type="button" value="Войти" />
             </div>
             <div id="chatBody">
                 <div id="header"></div>
                 <div id="inputForm">
-                    <input type="text" id="message" />
-                    <input type="button" id="sendmessage" value="Отправить" />
+                    <input type="text" class="form-control" id="message" />
+                    <input type="button" class="btn btn-block" id="sendmessage" value="Отправить" />
                 </div>
                 <div id="chatroom"></div>
-
+                
+                
+                  
                 <div id="chatusers">
                     <p><b>Все пользователи</b></p>
                 </div>
@@ -48,3 +52,8 @@
     }
 </body>
 </html>
+
+
+
+
+

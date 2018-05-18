@@ -190,3 +190,10 @@ div.blurs:hover > img.img_carusel {
     white-space: nowrap; /* paragraph to one line */
     overflow: hidden; /* older browsers */
 }
+.input-text {
+    background: #efefef;
+    padding: 10px;    
+}
+.EnText {
+    word-wrap: break-word;
+}

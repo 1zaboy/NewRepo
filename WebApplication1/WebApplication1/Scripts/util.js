@@ -7,7 +7,7 @@
     // Объявление функции, которая хаб вызывает при получении сообщений
     chat.client.addMessage = function (name, message) {
         // Добавление сообщений на веб-страницу 
-        $('#chatroom').append('<p><b>' + htmlEncode(name)
+        $('#chatroom').append('<p class="input-text EnText"><b>' + htmlEncode(name)
             + '</b>: ' + htmlEncode(message) + '</p>');
     };
 

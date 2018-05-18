@@ -47,14 +47,14 @@
 
     using (Html.BeginForm("InfoOrder0", "Manage", new { book = ViewBag.Info2.Id }, FormMethod.Post))
     {
-            
+
             @Html.ValidationSummary(true)
             <fieldset>
 
                 <p>
-                    <input type="submit" value="1" name="add" />
+                    <input type="submit" class="btn btn-primary" value="Take order" name="add" />
                 </p>
             </fieldset>
     }    
 }
-<a type="button" class="btn btn-primary" style="margin: 10px; margin-left: 60px" href="@Url.Action("UserInfo", "Manage", new { UserId = ViewBag.Info2.User1Id})">Customer</a>
+            <a type="button" class="btn btn-primary" style="margin: 10px; margin-left: 60px" href="@Url.Action("UserInfo", "Manage", new { UserId = ViewBag.Info2.User1Id})">Customer</a>
