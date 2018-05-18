@@ -197,3 +197,14 @@ div.blurs:hover > img.img_carusel {
 .EnText {
     word-wrap: break-word;
 }
+
+table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 310px;
+}
+
+    table td {
+        width: 100px;
+        word-wrap: break-word;
+    }
