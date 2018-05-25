@@ -71,7 +71,7 @@ namespace WebApplication1.Controllers
         public ActionResult Developers()
         {
             ViewBag.Message = "Your contact page.";
-            ViewBag.UserListOnPrint = fil1.AspNetUsers.OrderBy(t=>t.Id).Take(10);
+            ViewBag.UserListOnPrint = fil1.AspNetUsers.OrderBy(t=>t.Id).Take(10).ToList();
             var Lis = fil1.AspNetUsers.ToList();
             Bol = Lis.Count > 10;
             ViewBag.Bool = Bol;

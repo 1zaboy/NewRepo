@@ -40,6 +40,7 @@ namespace WebApplication1
         public int AccessFailedCount { get; set; }
 
         [Required]
+        
         [StringLength(30)]
         public string UserName { get; set; }
 

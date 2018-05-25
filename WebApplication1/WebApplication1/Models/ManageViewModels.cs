@@ -33,14 +33,14 @@ namespace WebApplication1.Models
     public class SetPasswordViewModel
     {
         [Required]
-        [StringLength(100, ErrorMessage = "Значение {0} должно содержать символов не менее: {2}.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The value {0} must contain at least the following characters: {2}.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Новый пароль")]
+        [Display(Name = "New password")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Подтверждение нового пароля")]
-        [Compare("NewPassword", ErrorMessage = "Новый пароль и его подтверждение не совпадают.")]
+        [Display(Name = "Confirm New Password")]
+        [Compare("NewPassword", ErrorMessage = "The new password and its confirmation do not match.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -48,18 +48,18 @@ namespace WebApplication1.Models
     {
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Текущий пароль")]
+        [Display(Name = "Current password")]
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "Значение {0} должно содержать символов не менее: {2}.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The value {0} must contain at least the following characters: {2}.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Новый пароль")]
+        [Display(Name = "New password")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Подтверждение нового пароля")]
-        [Compare("NewPassword", ErrorMessage = "Новый пароль и его подтверждение не совпадают.")]
+        [Display(Name = "Confirm New Password")]
+        [Compare("NewPassword", ErrorMessage = "The new password and its confirmation do not match.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -67,19 +67,19 @@ namespace WebApplication1.Models
     {
         [Required]
         [Phone]
-        [Display(Name = "Номер телефона")]
+        [Display(Name = "Phone number")]
         public string Number { get; set; }
     }
 
     public class VerifyPhoneNumberViewModel
     {
         [Required]
-        [Display(Name = "Код")]
+        [Display(Name = "Kod")]
         public string Code { get; set; }
 
         [Required]
         [Phone]
-        [Display(Name = "Номер телефона")]
+        [Display(Name = "Phone number")]
         public string PhoneNumber { get; set; }
     }
 
@@ -91,15 +91,15 @@ namespace WebApplication1.Models
     public class NewOrderViewModel
     {
         [Required]
-        [Display(Name = "Адрес электронной почты")]
+        [Display(Name = "E-mail address")]
         public string MainName { get; set; }
 
         [Required]
-        [Display(Name = "Пароль")]
+        [Display(Name = "Password")]
         public string Discription { get; set; }
 
         [Required]
-        [Display(Name = "Подтверждение пароля")]
+        [Display(Name = "Password confirmation")]
         public string Price { get; set; }
 
         //[Required]

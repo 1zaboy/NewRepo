@@ -8,14 +8,14 @@
 @Scripts.Render("~/scripts/DevJs.js")
 <div class="jumbotron jumbotron_developers">
     <h1 class="text-center">Developer Board</h1>
-    <h2 class="text-center">Список разработчиков</h2>
+    <h2 class="text-center">List of developers</h2>
 </div>
 
 
 @using (Html.BeginForm("Developers", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     <div class="form-group">
-        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.UserName,"User name", new { @class = "col-md-2 control-label" })
         <div class="col-md-3">
             @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
