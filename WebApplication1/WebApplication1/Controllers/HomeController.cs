@@ -124,15 +124,22 @@ namespace WebApplication1.Controllers
         }
         public ActionResult UserImg(string id)
         {
+            Stream stream;
             var t = getUser(id);
             if (t.Icon!=null)
             {
                 var image0 = imgC.ByteToImage(t.Icon);
                 image0 = imgC.RezizeImage(image0, 200, 200);
-                Stream stream = new MemoryStream(imgC.ImageToByte(image0));
-                return new FileStreamResult(stream, "image/jpeg");
+                stream = new MemoryStream(imgC.ImageToByte(image0));
+                
             }
-            return View();
+            else
+            {
+                
+                var image0 = imgC.RezizeImage(Image.FromFile("~/Content/image/icon_about_us.png",false), 200, 200);
+                stream = new MemoryStream(imgC.ImageToByte(image0));
+            }
+            return new FileStreamResult(stream, "image/jpeg");
         }
         public ActionResult UserName(string id)//text/plain
         {

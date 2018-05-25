@@ -11,11 +11,11 @@
 }
 @Scripts.Render("~/Scripts/card_js")
 @Styles.Render("~/Content/card")
-<dov class="row">
+<dov class="row_position row">
     @foreach (DbUserOrder ss in ViewBag.Ord)
     {
         
-    <div class="col-lg-4">
+    <div class="_col-lg-4">
         <figure class="snip1447">
             @if (ss.WayFile != null)
     {
