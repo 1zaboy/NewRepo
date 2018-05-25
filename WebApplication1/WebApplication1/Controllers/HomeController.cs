@@ -78,7 +78,13 @@ namespace WebApplication1.Controllers
             numb = 0;
             return View();
         }
-  
+
+        public JsonResult JsonSearch(string name)
+        {            
+            var ser = fil1.AspNetUsers.OrderBy(t => t.UserName.Contains(name)).ToList();           
+            return Json(ser, JsonRequestBehavior.AllowGet);
+        }
+
         public dbb ff = new dbb();
         private bool Bol;
         [HttpPost]
@@ -135,8 +141,9 @@ namespace WebApplication1.Controllers
             }
             else
             {
-                
-                var image0 = imgC.RezizeImage(Image.FromFile("~/Content/image/icon_about_us.png",false), 200, 200);
+                var dir = Server.MapPath("/Content/image");
+                var path = dir + "\\NotImg.jpg";
+                var image0 = imgC.RezizeImage(Image.FromFile(path, false), 200, 200);
                 stream = new MemoryStream(imgC.ImageToByte(image0));
             }
             return new FileStreamResult(stream, "image/jpeg");

@@ -1,12 +1,11 @@
 ﻿@model WebApplication1.AspNetUsers
+
 @{
     /**/
 
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<head>
-   
-</head>
+@Scripts.Render("~/scripts/DevJs.js")
 <div class="jumbotron jumbotron_developers">
     <h1 class="text-center">Developer Board</h1>
     <h2 class="text-center">Список разработчиков</h2>
@@ -15,18 +14,26 @@
 
 @using (Html.BeginForm("Developers", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-<div class="form-group">
-    @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
-    <div class="col-md-3">
-        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-3">
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-5">
+            <input type="submit" value="Поиск" class="btn btn-default" />
+        </div>
     </div>
-    <div class="col-md-5">
-        <input type="submit" value="Поиск" class="btn btn-default" />
-    </div>
-</div>
-    
 }
+
+@*@using (Ajax.BeginForm("JsonSearch", new AjaxOptions { OnSuccess = "OnSuccess" }))
+    {
+        <input type="text" name="name" />
+        <input type="submit" value="Поиск" />
+    }
+    <br />
+    <div id="results"></div>*@
+
 
 
 <div class="container">
@@ -40,7 +47,7 @@
         </thead>
         @foreach (AspNetUsers ss in ViewBag.UserListOnPrint)
         {
-            <tbody >
+            <tbody>
                 <tr onclick="window.location='@Url.Action("UserInfo", "Manage", new { UserId = @ss.Id })#';">
                     <td>@ss.UserName</td>
                     <td class="EnText">@ss.Description</td>
@@ -53,12 +60,12 @@
 </div>
 @if (ViewBag.Bool)
 {
-<ul class="pagination">
-    <li class="page-item">
-        <a class="page-link" href="@Url.Action("Developers_early", "Home")">Previous</a>
-    </li>
-    <li class="page-item">
-    <a class="page-link" href="@Url.Action("Developers_next", "Home")">Next</a>
-    </li>
-</ul>
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" href="@Url.Action("Developers_early", "Home")">Previous</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="@Url.Action("Developers_next", "Home")">Next</a>
+        </li>
+    </ul>
 }

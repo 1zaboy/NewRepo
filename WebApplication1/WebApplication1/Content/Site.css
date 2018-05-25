@@ -81,7 +81,7 @@ textarea {
 
 ._col-lg-4 {
     position: relative;
-    min-height: 1px;
+    height: 500px;
     padding-right: 15px;
     padding-left: 15px;
     margin-bottom: 15px;

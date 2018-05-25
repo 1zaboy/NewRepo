@@ -18,13 +18,13 @@
     <div class="_col-lg-4">
         <figure class="snip1447">
             @if (ss.WayFile != null)
-    {
-        <img src="@Url.Action("OrderImg", "Home", new { id = @ss.Id })" alt="sample87" />
-}
-else
-{
-        <img class="card-img-top card_user_style1" src="~/Content/image/icon_about_us.png" alt="Card image cap">
-}
+            {
+            <img src="@Url.Action("OrderImg", "Home", new { id = @ss.Id })" alt="sample87" />
+            }
+            else
+            {
+            <img class="card-img-top card_user_style1" src="~/Content/image/icon_about_us.png" alt="Card image cap">
+            }
             <figcaption>
                 <img src="@Url.Action("UserImg", "Home", new { id = @ss.User1Id })" alt="profile-sample4" class="profile" />
 
