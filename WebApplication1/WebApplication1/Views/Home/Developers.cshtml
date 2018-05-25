@@ -40,8 +40,8 @@
     <table class="table table-hover EnText">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Description</th>
+                <th class="col-xs-3">Name</th>
+                <th class="col-xs-9">Description</th>
 
             </tr>
         </thead>
@@ -49,8 +49,8 @@
         {
             <tbody>
                 <tr onclick="window.location='@Url.Action("UserInfo", "Manage", new { UserId = @ss.Id })#';">
-                    <td>@ss.UserName</td>
-                    <td class="EnText">@ss.Description</td>
+                    <td class="col-xs-3">@ss.UserName</td>
+                    <td class="EnText col-xs-9">@ss.Description</td>
 
                 </tr>
             </tbody>
