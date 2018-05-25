@@ -32,6 +32,13 @@ namespace WebApplication1
                         "~/Scripts/SettingAccount.js"));
             bundles.Add(new StyleBundle("~/Content/StyleSheet1").Include(
         "~/Content/StyleSheet1.css"));
+
+
+
+            bundles.Add(new ScriptBundle("~/Scripts/card_js").Include(
+                       "~/Scripts/card_js.js"));
+            bundles.Add(new StyleBundle("~/Content/card").Include(
+        "~/Content/card.css"));
         }
     }
 }

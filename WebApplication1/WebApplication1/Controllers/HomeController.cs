@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using WebApplication1;
+using System.Drawing;
+using System.IO;
 namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
@@ -33,10 +35,11 @@ namespace WebApplication1.Controllers
         }
         public ActionResult Orders()
         {
+            numb = 0;
             ViewBag.Message = "Your contact page.";
-            ViewBag.Ord = fil1.DbUserOrder.OrderBy(t=>t.DateIn).Where(t=>t.User2Id == null).Take(30);
-            var Lis = fil1.AspNetUsers.ToList();
-            Bol = Lis.Count > 10;
+            ViewBag.Ord = fil1.DbUserOrder.OrderBy(t=>t.DateIn).Where(t=>t.User2Id == null).Take(15);
+            var Lis = fil1.DbUserOrder.ToList();
+            Bol = Lis.Count > 15;
             ViewBag.Bool = Bol;
             numb = 0;            
             return View();
@@ -45,21 +48,25 @@ namespace WebApplication1.Controllers
         public ActionResult Order_next()
         {
             ViewBag.Message = "Your contact page.";
-            numb += 10;
-            ViewBag.UserListOnPrint = fil1.DbUserOrder.OrderBy(t => t.DateIn).Where(t => t.User2Id == null).Skip(numb).Take(10);
+            numb += 15;
+            ViewBag.Ord = fil1.DbUserOrder.OrderBy(t => t.DateIn).Where(t => t.User2Id == null).Skip(numb).Take(15);
+            var Lis = fil1.DbUserOrder.ToList();
+            Bol = Lis.Count > 15;
             ViewBag.Bool = Bol;
-            return View("Order");
+            return View("Orders");
         }
 
         public ActionResult Order_early()
         {
             ViewBag.Message = "Your contact page.";
-            numb -= 10;
+            numb -= 15;
             if (numb < 0)
                 numb = 0;
-            ViewBag.UserListOnPrint = fil1.DbUserOrder.OrderBy(t => t.DateIn).Where(t => t.User2Id == null).Skip(numb).Take(10);
+            ViewBag.Ord = fil1.DbUserOrder.OrderBy(t => t.DateIn).Where(t => t.User2Id == null).Skip(numb).Take(15);
+            var Lis = fil1.DbUserOrder.ToList();
+            Bol = Lis.Count > 15;
             ViewBag.Bool = Bol;
-            return View("Order");
+            return View("Orders");
         }
         public ActionResult Developers()
         {
@@ -73,7 +80,7 @@ namespace WebApplication1.Controllers
         }
   
         public dbb ff = new dbb();
-        private bool Bol = false;
+        private bool Bol;
         [HttpPost]
         public ActionResult Developers(AspNetUsers pic, HttpPostedFileBase uploadImage)
         {
@@ -91,7 +98,10 @@ namespace WebApplication1.Controllers
         {
             ViewBag.Message = "Your contact page.";
             numb += 10;
+
             ViewBag.UserListOnPrint = fil1.AspNetUsers.OrderBy(t=>t.Id).Skip(numb).Take(10);
+            var Lis = fil1.AspNetUsers.ToList();
+            Bol = Lis.Count > 10;
             ViewBag.Bool = Bol;
             return View("Developers");
         }
@@ -103,8 +113,42 @@ namespace WebApplication1.Controllers
             if (numb < 0)
                 numb = 0;
             ViewBag.UserListOnPrint = fil1.AspNetUsers.OrderBy(t => t.Id).Skip(numb).Take(10);
+            var Lis = fil1.AspNetUsers.ToList();
+            Bol = Lis.Count > 10;
             ViewBag.Bool = Bol;
             return View("Developers");
         }
+        public AspNetUsers getUser(string IdUser)
+        {
+            return ff.AspNetUsers.Where(t => t.Id == IdUser).ToList().First();
+        }
+        public ActionResult UserImg(string id)
+        {
+            var t = getUser(id);
+            if (t.Icon!=null)
+            {
+                var image0 = imgC.ByteToImage(t.Icon);
+                image0 = imgC.RezizeImage(image0, 200, 200);
+                Stream stream = new MemoryStream(imgC.ImageToByte(image0));
+                return new FileStreamResult(stream, "image/jpeg");
+            }
+            return View();
+        }
+        public ActionResult UserName(string id)//text/plain
+        {
+            var gg = getUser(id).UserName;
+            Stream stream = new MemoryStream(Convert.FromBase64String(gg));
+            return new FileStreamResult(stream, "text/plain");
+            
+        }
+        private help_cs.img imgC = new help_cs.img();
+        public ActionResult OrderImg(int id)
+        {
+            var t1 = ff.DbUserOrder.Where(t => t.Id == id).ToList().First();
+            
+            Stream stream = new MemoryStream(t1.WayFile);
+            return new FileStreamResult(stream, "image/jpeg");
+        }
+       
     }
 }
