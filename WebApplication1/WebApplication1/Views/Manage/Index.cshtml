@@ -1,7 +1,7 @@
 ﻿@model WebApplication1.Models.IndexViewModel
     @using Microsoft.AspNet.Identity;
 @{
-    ViewBag.Title = "Управление";
+    ViewBag.Title = "Control";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -70,18 +70,18 @@
             [
             @if (Model.HasPassword)
             {
-                @Html.ActionLink("Смена пароля", "ChangePassword")
+                @Html.ActionLink("Change password", "ChangePassword")
             }
             else
             {
-                @Html.ActionLink("Создать", "SetPassword")
+                @Html.ActionLink("Create", "SetPassword")
             }
             ]
         </dd>
-        <dt>Внешние имена входа:</dt>
+        <dt>External login names:</dt>
         <dd>
             @Model.Logins.Count [
-            @Html.ActionLink("Управление", "ManageLogins") ]
+            @Html.ActionLink("Control", "ManageLogins") ]
         </dd>
         @*
             Номера телефонов можно использовать в качестве второго проверочного фактора для системы двухфакторной проверки подлинности.
@@ -92,7 +92,7 @@
              Настроив двухфакторную проверку подлинности, раскомментируйте следующий блок
         *@
 
-        <dt>Номер телефона:</dt>
+        <dt>Phone number:</dt>
         <dd>
             @(Model.PhoneNumber ?? "None")
             @if (Model.PhoneNumber != null)
@@ -102,7 +102,7 @@
                 using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
-                    <text>[<input type="submit" value="Удалить" class="btn-link" />]</text>
+                    <text>[<input type="submit" value="Delete" class="btn-link" />]</text>
                 }
             }
             else
@@ -111,19 +111,19 @@
             }
         </dd>
 
-        <dt>Двухфакторная проверка подлинности:</dt>
+        <dt>Two-factor authentication:</dt>
         <dd>
             <p>
-                Поставщики двухфакторной проверки подлинности не настроены. В <a href="https://go.microsoft.com/fwlink/?LinkId=403804">этой статье</a>
-                можно узнать, как настроить двухфакторную проверку подлинности для этого приложения ASP.NET.
+                Two-factor authentication providers are not configured. In <a href="https://go.microsoft.com/fwlink/?LinkId=403804"> this article </a>
+                you can learn how to configure two-factor authentication for this ASP.NET application.
             </p>
             @if (Model.TwoFactor)
             {
                 using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
-                    <text>Включено
-                        <input type="submit" value="Отключить" class="btn btn-link" />
+                    <text>On
+                        <input type="submit" value="Off" class="btn btn-link" />
                     </text>
                 }
             }
@@ -133,7 +133,7 @@
                 {
                     @Html.AntiForgeryToken()
                     <text>Отключено
-                        <input type="submit" value="Включить" class="btn btn-link" />
+                        <input type="submit" value="On" class="btn btn-link" />
                     </text>
                 }
             }
