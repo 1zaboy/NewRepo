@@ -29,7 +29,7 @@ namespace WebApplication1.Models
         public string Provider { get; set; }
 
         [Required]
-        [Display(Name = "Kod")]
+        [Display(Name = "Code")]
         public string Code { get; set; }
         public string ReturnUrl { get; set; }
 
@@ -49,7 +49,7 @@ namespace WebApplication1.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Name accaunt")]
+        [Display(Name = "Name account")]
         public string Name { get; set; }
 
         [Required]
@@ -74,9 +74,9 @@ namespace WebApplication1.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "Значение {0} должно содержать не менее {2} символов.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The value {0} must contain at least {2} characters.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Пароль")]
+        [Display(Name ="Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
@@ -93,7 +93,7 @@ namespace WebApplication1.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "Значение {0} должно содержать не менее {2} символов.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The value {0} must contain at least {2} characters.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }

@@ -22,23 +22,23 @@
     <div class="col-sm-9" style="padding-left: 0px">
         <div class="jumbotron jumbotron_developers"> 
             <h2 class="text-center EnText">@ViewBag.Acc.UserName</h2>
-            <p class="lead EnText">@ViewBag.Acc.Description</p>
+            <p class="text-center EnText">@ViewBag.Acc.Description</p>
         </div>
     </div>
 </div>
 @if (ViewBag.Acc.Id == User.Identity.GetUserId())
 {
-<a type="button" class="btn btn-primary" style="margin: 10px; margin-left: 60px" href="@Url.Action("SettingAccount", "Manage")">Setting</a>
+<a type="button" class="btn btn-primary" style="margin: 10px; " href="@Url.Action("SettingAccount", "Manage")">Setting</a>
 }
-<a type="button" class="btn btn-primary" style="margin: 10px; margin-left: 60px" href="@Url.Action("CreatureOrder", "Manage")">Primary</a>
+<a type="button" class="btn btn-primary" style="margin: 10px; " href="@Url.Action("CreatureOrder", "Manage")">Create order</a>
 <div class="tabbable">
     <!-- Only required for left/right tabs -->
     <ul class="nav nav-tabs">
         <li class="active">
-            <a href="#tab1" data-toggle="tab">Заказы</a>
+            <a href="#tab1" data-toggle="tab">Orders</a>
         </li>
         <li>
-            <a href="#tab2" data-toggle="tab">Разработка</a>
+            <a href="#tab2" data-toggle="tab">Development</a>
         </li>
     </ul>
     <div class="tab-content">
@@ -65,7 +65,7 @@
     <h4>Изменение параметров учетной записи</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>Пароль:</dt>
+        <dt>Password::</dt>
         <dd>
             [
             @if (Model.HasPassword)

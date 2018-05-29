@@ -74,7 +74,7 @@ namespace WebApplication1.Models
     public class VerifyPhoneNumberViewModel
     {
         [Required]
-        [Display(Name = "Kod")]
+        [Display(Name = "Code")]
         public string Code { get; set; }
 
         [Required]

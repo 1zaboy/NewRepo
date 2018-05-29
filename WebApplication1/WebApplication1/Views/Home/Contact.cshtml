@@ -13,27 +13,27 @@
 <body>
     @if (User.Identity.GetUserName() != "")
     {
-        <h2>Чат-комната</h2>
+    <h2>Chat room</h2>
 
         <div class="main">
             <div id="loginBlock">
-                Введите логин:<br />
+                Enter login:<br />
 
                 <input id="txtUserName" class="form-control" value="@User.Identity.GetUserName()" />
-                <input id="btnLogin" class="btn btn-block" type="button" value="Войти" />
+                <input id="btnLogin" class="btn btn-block" type="button" value="Sign in" />
             </div>
             <div id="chatBody">
                 <div id="header"></div>
                 <div id="inputForm">
                     <input type="text" class="form-control" id="message" />
-                    <input type="button" class="btn btn-block" id="sendmessage" value="Отправить" />
+                    <input type="button" class="btn btn-block" id="sendmessage" value="Send" />
                 </div>
                 <div id="chatroom"></div>
                 
                 
                   
                 <div id="chatusers">
-                    <p><b>Все пользователи</b></p>
+                    <p><b>All users</b></p>
                 </div>
             </div>
             <input id="hdId" type="hidden" />
