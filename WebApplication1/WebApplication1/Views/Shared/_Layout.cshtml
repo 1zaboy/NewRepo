@@ -37,10 +37,13 @@
             </div>
         </div>
     </div>
+    
     <div class="container body-content" style="padding-left: 0px;padding-right: 0px">
         @RenderBody()
         <hr />
-
+        <footer>
+            <a href="#top" class="to-top">Back to top</a>
+        </footer>
     </div>
     @RenderSection("scripts", required: false)
 </body>

@@ -5,23 +5,40 @@
     @foreach (DbUserOrder ss in Model)
     {
 
-        <div class="_col-lg-4">
-            <figure class="snip1447">
-                @if (ss.WayFile != null)
-                {
-                    <img src="@Url.Action("OrderImg", "Home", new { id = @ss.Id })" alt="sample87" />
-                }
-                else
-                {
-                    <img class="card-img-top card_user_style1" src="~/Content/image/icon_about_us.png" alt="Card image cap">
-                }
-                <figcaption>
-                    <img src="@Url.Action("UserImg", "Home", new { id = @ss.User1Id })" alt="profile-sample4" class="profile" />
+        string str = @ss.Discription;
+        int val = 10;
+        if (str.Length > val)
+        {
+            str = str.Substring(0, val);
 
-                    <h2>@ss.MainName<span>@*@Url.Action("UserName", "Home", new { id = @ss.User1Id })*@</span></h2>
-                    <p>@ss.Discription</p><a href="@Url.Action("InfoOrder", "Manage", new {IdOrder = ss.Id})" class="info">More Info</a> @*<a href="#" class="follow">Follow</a>*@
-                </figcaption>
-            </figure>
-        </div>
+            str += "...";
+        }
+
+        
+
+
+
+    <div class="_col-lg-4">
+        <figure class="snip1447">
+            @if (ss.WayFile != null)
+            {
+                <img src="@Url.Action("OrderImg", "Home", new { id = @ss.Id })" alt="sample87" />
+            }
+            else
+            {
+                <img class="card-img-top card_user_style1" src="~/Content/image/icon_about_us.png" alt="Card image cap">
+            }
+            <figcaption>
+                <img src="@Url.Action("UserImg", "Home", new { id = @ss.User1Id })" alt="profile-sample4" class="profile" />
+
+                <h2>@ss.MainName<span>@*@Url.Action("UserName", "Home", new { id = @ss.User1Id })*@</span></h2>
+
+                <p id="textarea"> @ss.Discription</p>
+                <a href="@Url.Action("InfoOrder", "Manage", new {IdOrder = ss.Id})" class="info">
+                    More Info
+                </a> @*<a href="#" class="follow">Follow</a>*@
+            </figcaption>
+        </figure>
+    </div>
     }
 </dov>
