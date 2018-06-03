@@ -41,9 +41,12 @@ box-shadow: 0 0 5px;
     
 
     <h3>File</h3>
-
+    @if (ViewBag.Info2.WayFile != null)
+    {
     <div style="  width:50%; height:50%; position: center;"> @Html.Raw("<img class=\"card_user_style1\" src=\"data:image/jpeg;base64," + Convert.ToBase64String(ViewBag.Info2.WayFile) + "\" />") 
+    
  </div>
+    }
 </div>
     
 

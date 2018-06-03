@@ -7,73 +7,18 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     //AspNetUsers
-    
+
 }
-@Scripts.Render("~/Scripts/card_js")
-@Styles.Render("~/Content/card")
-<dov class="row_position row">
-    @foreach (DbUserOrder ss in ViewBag.Ord)
-    {
-        
-    <div class="_col-lg-4">
-        <figure class="snip1447">
-            @if (ss.WayFile != null)
-            {
-            <img src="@Url.Action("OrderImg", "Home", new { id = @ss.Id })" alt="sample87" />
-            }
-            else
-            {
-            <img class="card-img-top card_user_style1" src="~/Content/image/icon_about_us.png" alt="Card image cap">
-            }
-            <figcaption>
-                <img src="@Url.Action("UserImg", "Home", new { id = @ss.User1Id })" alt="profile-sample4" class="profile" />
+<div id="results"></div>
+@Scripts.Render("~/Scripts/OrderAjax.js")
+@if(ViewBag.Bool){
+<ul class="pagination">
+    <li class="page-item">
+        <a class="page-link" id="btn1">Previous</a>
+    </li>
+    <li class="page-item">
+        <a class="page-link" id="btn2">Next</a>        
+    </li>
+</ul>
+}
 
-                <h2>@ss.MainName<span>@*@Url.Action("UserName", "Home", new { id = @ss.User1Id })*@</span></h2>
-                <p>@ss.Discription</p><a href="@Url.Action("InfoOrder", "Manage", new {IdOrder = ss.Id})" class="info">More Info</a> @*<a href="#" class="follow">Follow</a>*@
-            </figcaption>
-        </figure>
-
-    </div>
-
-
-
-
-
-
-    @*<dov class="_col-lg-4">
-            <div class="card text-center" style="width: 70%; height:100%; margin: auto; outline: #cacd58 dotted 2px;">
-                @if (ss.WayFile != null)
-                {
-
-                    var imgC = new img();
-                    var image0 = imgC.ByteToImage(ss.WayFile);
-
-                    image0 = imgC.RezizeImage(image0, 500, 500);
-                    <img class="card_user_style1" src="@Url.Action("UserImg", "Home", new { Id = @ss.User1Id })" />
-                }
-                else
-                {
-                    <img class="card-img-top card_user_style1" src="~/Content/image/icon_about_us.png" alt="Card image cap">
-                }
-
-                <div class="card-block">
-                    <h4 class="card-title text-center">@ss.MainName</h4>
-                    <p class="card-text text_left">@ss.Price</p>
-                    <p class="card-text text_left">@ss.Discription</p>
-                    <a class="btn btn-primary" href="@Url.Action("InfoOrder", "Manage", new {IdOrder = ss.Id})">Go somewhere</a>
-                </div>
-            </div>
-        </dov>*@
-    }
-    </div>
-    @if (ViewBag.Bool)
-    {
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="@Url.Action("Order_early", "Home")">Previous</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="@Url.Action("Order_next", "Home")">Next</a>
-            </li>
-        </ul>
-    }

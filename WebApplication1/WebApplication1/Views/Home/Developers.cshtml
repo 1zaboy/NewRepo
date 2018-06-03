@@ -5,67 +5,28 @@
 
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@Scripts.Render("~/scripts/DevJs.js")
+@*@Scripts.Render("~/scripts/DevJs.js")*@
 <div class="jumbotron jumbotron_developers">
     <h1 class="text-center">Developer Board</h1>
     <h2 class="text-center">List of developers</h2>
 </div>
 
 
-@using (Html.BeginForm("Developers", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    <div class="form-group">
-        @Html.LabelFor(m => m.UserName,"User name", new { @class = "col-md-2 control-label" })
-        <div class="col-md-3">
-            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
-        </div>
-        <div class="col-md-5">
-            <input type="submit" value="Search" class="btn btn-default" />
-        </div>
-    </div>
-}
+<input type="text" name="name" id="search" />
+<input type='button' id="submit" value='Поиск' />
 
-@*@using (Ajax.BeginForm("JsonSearch", new AjaxOptions { OnSuccess = "OnSuccess" }))
-    {
-        <input type="text" name="name" />
-        <input type="submit" value="Поиск" />
-    }
-    <br />
-    <div id="results"></div>*@
-
-
-
-<div class="container">
-    <table class="table table-hover EnText">
-        <thead>
-            <tr>
-                <th class="col-xs-3">Name</th>
-                <th class="col-xs-9">Description</th>
-
-            </tr>
-        </thead>
-        @foreach (AspNetUsers ss in ViewBag.UserListOnPrint)
-        {
-            <tbody>
-                <tr onclick="window.location='@Url.Action("UserInfo", "Manage", new { UserId = @ss.Id })#';">
-                    <td class="col-xs-3">@ss.UserName</td>
-                    <td class="EnText col-xs-9">@ss.Description</td>
-
-                </tr>
-            </tbody>
-        }
-
-    </table>
-</div>
+   
+<div id="results"></div>
+@Scripts.Render("~/Scripts/DevAjax.js")
 @if (ViewBag.Bool)
 {
     <ul class="pagination">
         <li class="page-item">
-            <a class="page-link" href="@Url.Action("Developers_early", "Home")">Previous</a>
+            <a class="page-link" id="btn1">Previous</a>
         </li>
         <li class="page-item">
-            <a class="page-link" href="@Url.Action("Developers_next", "Home")">Next</a>
+            <a class="page-link" id="btn2">Next</a>
         </li>
     </ul>
 }
+

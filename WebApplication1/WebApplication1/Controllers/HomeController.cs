@@ -34,40 +34,13 @@ namespace WebApplication1.Controllers
             return View();
         }
         public ActionResult Orders()
-        {
-            numb = 0;
-            ViewBag.Message = "Your contact page.";
-            ViewBag.Ord = fil1.DbUserOrder.OrderBy(t=>t.DateIn).Where(t=>t.User2Id == null).Take(15);
+        {   
             var Lis = fil1.DbUserOrder.ToList();
+            ViewBag.Count = Lis.Count;
             Bol = Lis.Count > 15;
-            ViewBag.Bool = Bol;
-            numb = 0;            
+            ViewBag.Bool = Bol;            
             return View();
-        }
-
-        public ActionResult Order_next()
-        {
-            ViewBag.Message = "Your contact page.";
-            numb += 15;
-            ViewBag.Ord = fil1.DbUserOrder.OrderBy(t => t.DateIn).Where(t => t.User2Id == null).Skip(numb).Take(15);
-            var Lis = fil1.DbUserOrder.ToList();
-            Bol = Lis.Count > 15;
-            ViewBag.Bool = Bol;
-            return View("Orders");
-        }
-
-        public ActionResult Order_early()
-        {
-            ViewBag.Message = "Your contact page.";
-            numb -= 15;
-            if (numb < 0)
-                numb = 0;
-            ViewBag.Ord = fil1.DbUserOrder.OrderBy(t => t.DateIn).Where(t => t.User2Id == null).Skip(numb).Take(15);
-            var Lis = fil1.DbUserOrder.ToList();
-            Bol = Lis.Count > 15;
-            ViewBag.Bool = Bol;
-            return View("Orders");
-        }
+        }      
         public ActionResult Developers()
         {
             ViewBag.Message = "Your contact page.";
@@ -79,11 +52,7 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        public JsonResult JsonSearch(string name)
-        {            
-            var ser = fil1.AspNetUsers.OrderBy(t => t.UserName.Contains(name)).ToList();           
-            return Json(ser, JsonRequestBehavior.AllowGet);
-        }
+       
 
         public dbb ff = new dbb();
         private bool Bol;
@@ -163,6 +132,19 @@ namespace WebApplication1.Controllers
             Stream stream = new MemoryStream(t1.WayFile);
             return new FileStreamResult(stream, "image/jpeg");
         }
-       
+        public ActionResult ViewCardAjax(int numb)
+        {
+            var val = numb * 15;
+            var allbooks = ff.DbUserOrder.OrderByDescending(t=>t.Id).Skip(val).Take(15);
+            return PartialView(allbooks);
+        }        
+        public ActionResult ViewDevAjax(int numb, string name1)
+        {
+            var val = numb * 10;
+            var allbooks = ff.AspNetUsers.Where(t=>t.UserName.Contains(name1)).OrderByDescending(t => t.Id).Skip(val).Take(10);
+            return PartialView(allbooks);
+        }        
+        
+
     }
 }
