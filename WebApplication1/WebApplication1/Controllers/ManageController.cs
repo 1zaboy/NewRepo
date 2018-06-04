@@ -93,9 +93,7 @@ namespace WebApplication1.Controllers
         {
 
             pic.DateIn = DateTime.Today;
-            pic.User1Id = User.Identity.GetUserId();
-                var val = ff.DbUserOrder.Count();// Where(t => t.Id == book.Id).ToList().Last().Id;
-                pic.Id = val + 1;
+            pic.User1Id = User.Identity.GetUserId();           
             if (ModelState.IsValid && uploadImage != null)
             {
                 byte[] imageData = null;
@@ -106,13 +104,14 @@ namespace WebApplication1.Controllers
                 }
                 // установка массива байтов
                 pic.WayFile = imageData;
-            } 
-                ff.DbUserOrder.Add(pic);
-                ff.SaveChanges();
-
-                return RedirectToAction("Index");
+            }
+            pic.User1End = false;
+            pic.User2End = false;
+            ff.DbUserOrder.Add(pic);
+            ff.SaveChanges();
+            return RedirectToAction("Index");
             
-            return View(pic);
+            
         }
         public ActionResult WebDescription()
         {         
@@ -133,8 +132,23 @@ namespace WebApplication1.Controllers
             ff.SaveChanges();
             return RedirectToAction("Index");
         }
+        public ActionResult InfoOrder_true_or_false(int id, int _index)
+        {
+            var I = ff.DbUserOrder.Where(t => t.Id == id).ToList().First();
+            if(_index == 0)
+            {
+                I.User1End = true;
+            }
+            else if(_index == 1)
+            {
+                I.User2End = true;
+            }            
+            ff.Entry(I).State = EntityState.Modified;
+            ff.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
-    
+
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {

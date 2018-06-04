@@ -43,56 +43,14 @@ namespace WebApplication1.Controllers
         }      
         public ActionResult Developers()
         {
-            ViewBag.Message = "Your contact page.";
-            ViewBag.UserListOnPrint = fil1.AspNetUsers.OrderBy(t=>t.Id).Take(10).ToList();
+            ViewBag.Message = "Your contact page.";            
             var Lis = fil1.AspNetUsers.ToList();
             Bol = Lis.Count > 10;
-            ViewBag.Bool = Bol;
-            numb = 0;
+            ViewBag.Bool = Bol;            
             return View();
         }
-
-       
-
         public dbb ff = new dbb();
-        private bool Bol;
-        [HttpPost]
-        public ActionResult Developers(AspNetUsers pic, HttpPostedFileBase uploadImage)
-        {
-            var r = ff.AspNetUsers.Where(t => t.UserName.Contains(pic.UserName)).ToList();
-            
-            ViewBag.UserListOnPrint = r;
-            
-            ViewBag.Bool = Bol;
-            //return RedirectToAction("Developers");
-
-            return View();
-        }
-        public int numb = 0;
-        public ActionResult Developers_next()
-        {
-            ViewBag.Message = "Your contact page.";
-            numb += 10;
-
-            ViewBag.UserListOnPrint = fil1.AspNetUsers.OrderBy(t=>t.Id).Skip(numb).Take(10);
-            var Lis = fil1.AspNetUsers.ToList();
-            Bol = Lis.Count > 10;
-            ViewBag.Bool = Bol;
-            return View("Developers");
-        }
-
-        public ActionResult Developers_early()
-        {
-            ViewBag.Message = "Your contact page.";
-            numb -= 10;
-            if (numb < 0)
-                numb = 0;
-            ViewBag.UserListOnPrint = fil1.AspNetUsers.OrderBy(t => t.Id).Skip(numb).Take(10);
-            var Lis = fil1.AspNetUsers.ToList();
-            Bol = Lis.Count > 10;
-            ViewBag.Bool = Bol;
-            return View("Developers");
-        }
+        private bool Bol;        
         public AspNetUsers getUser(string IdUser)
         {
             return ff.AspNetUsers.Where(t => t.Id == IdUser).ToList().First();
@@ -135,7 +93,7 @@ namespace WebApplication1.Controllers
         public ActionResult ViewCardAjax(int numb)
         {
             var val = numb * 15;
-            var allbooks = ff.DbUserOrder.OrderByDescending(t=>t.Id).Skip(val).Take(15);
+            var allbooks = ff.DbUserOrder.Where(t=>t.User2Id == null).OrderByDescending(t=>t.Id).Skip(val).Take(15);
             return PartialView(allbooks);
         }        
         public ActionResult ViewDevAjax(int numb, string name1)

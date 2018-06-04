@@ -43,20 +43,83 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="tab1">
-            @foreach (DbUserOrder ss in ViewBag.Info1)
-            {
-            <p>
-                <a onclick="window.location='@Url.Action("InfoOrder", "Manage", new { IdOrder = @ss.Id})#';">Name: (@ss.MainName)  Price: (@ss.Price)  Date Out: (@ss.DateOut)</a>
-            </p>
-            }
+
+            @*  *@
+
+            <table class="table table-hover EnText">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Data in</th>
+                        <th>Data out</th>                        
+                        <th>Event end</th>
+                    </tr>
+                </thead>
+                @foreach (DbUserOrder ss in ViewBag.Info1)
+                {
+                <tbody>
+                    <tr onclick="window.location='@Url.Action("InfoOrder", "Manage", new { IdOrder = @ss.Id})#';">
+                        <td>@ss.MainName</td>
+                        <td>@ss.DateIn</td>
+                        <td>@ss.DateOut</td>
+                        @{ 
+                            var f = false;
+                            if(ss.User1End == true && ss.User2End == true)
+                            {
+                                f = true;
+                            }
+                        }
+                        <td>@f</td>
+                    </tr>
+                </tbody>
+                }
+            </table>
+
+            @*@foreach (DbUserOrder ss in ViewBag.Info1)
+        {
+        <p>
+            <a onclick="window.location='@Url.Action("InfoOrder", "Manage", new { IdOrder = @ss.Id})#';">Name: (@ss.MainName)  Price: (@ss.Price)  Date Out: (@ss.DateOut)</a>
+        </p>
+        }*@
         </div>
         <div class="tab-pane" id="tab2">
-            @foreach (DbUserOrder ss in ViewBag.Info2)
-            {
-            <p>
-                <a onclick="window.location='@Url.Action("InfoOrder", "Manage", new { IdOrder = @ss.Id})#';">Name: (@ss.MainName)  Price: (@ss.Price)  Date Out: (@ss.DateOut)</a>
-            </p>
-            }
+
+            <table class="table table-hover EnText">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Data in</th>
+                        <th>Data out</th>
+                        <th>Event end</th>
+                    </tr>
+                </thead>
+                @foreach (DbUserOrder ss in ViewBag.Info2)
+        {
+            <tbody>
+                <tr onclick="window.location='@Url.Action("InfoOrder", "Manage", new { IdOrder = @ss.Id})#';">
+                    <td>@ss.MainName</td>
+                    <td>@ss.DateIn</td>
+                    <td>@ss.DateOut</td>
+                    @{
+                var f = false;
+                if (ss.User1End == true && ss.User2End == true)
+                {
+                    f = true;
+                }
+                    }
+                    <td>@f</td>
+                </tr>
+            </tbody>
+}
+            </table>
+
+
+            @*@foreach (DbUserOrder ss in ViewBag.Info2)
+        {
+        <p>
+            <a onclick="window.location='@Url.Action("InfoOrder", "Manage", new { IdOrder = @ss.Id})#';">Name: (@ss.MainName)  Price: (@ss.Price)  Date Out: (@ss.DateOut)</a>
+        </p>
+        }*@
         </div>
     </div>
 </div>

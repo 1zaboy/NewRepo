@@ -11,7 +11,7 @@ namespace WebApplication1
     [Table("DbUserOrder")]
     public partial class DbUserOrder
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [StringLength(128)]
@@ -32,6 +32,8 @@ namespace WebApplication1
         public byte[] WayFile { get; set; }
 
         public string MainName { get; set; }
+        public bool User1End { get; set; }
+        public bool User2End { get; set; }
 
     }
 }
