@@ -29,53 +29,52 @@
                 @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
             </div>
         </div>
-
-        <script type="text/javascript">
-            $(function () { // will trigger when the document is ready
-                $('.datepicker').datepicker(); //Initialise any date pickers
-            });
-        </script>
-
-        
-        <div style="border-top: 50px">
-            <h3> Date: </h3>
-            @Html.TextBoxFor(m => m.DateOut, new { @class = "form-control datepicker", placeholder = "Enter Drop-off date here..." })
-        </div>
-        @Html.ValidationSummary(true)
-
-        <fieldset>
-            <legend>Change icon</legend>
-            <div class="editor-field">
-                @*<input type="file" name="uploadImage" />*@
-
-                <div class="large-12 columns">
-
-                    <h1>Load A Photo</h1>
-                    <input type="file" name="uploadImage" id="the-photo-file-field" accept=".jpg, .jpeg, .png">
-                    <div class="row">
-
-                        <div class="col-lg-12" id="preview">
-                            <!--image will be inserted here-->
-                        </div>
-
-                    </div>
-                    <div id="data" class="large-8 columns">
-                        <h2 id="name"></h2>
-                        <p id="size"></p>
-                        <p id="type"></p>
-                    </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.DateOut, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.DateOut, new { @class = "form-control datepicker", placeholder = "Enter Drop-off date here..." })
                 </div>
             </div>
-            <p>
-                <input type="submit" id="btn1" class="btn btn-group" value="Add" />
-            </p>
+            <script type="text/javascript">
+                $(function () { // will trigger when the document is ready
+                    $('.datepicker').datepicker(); //Initialise any date pickers
+                });
+            </script>
+            @Html.ValidationSummary(true)
 
-        </fieldset>
-        @Scripts.Render("~/Scripts/SettingAccount")
-}
+            <fieldset>
+                <legend>Change icon</legend>
+                <div class="editor-field">
+                    @*<input type="file" name="uploadImage" />*@
 
-        <div>
-            @Html.ActionLink("Back to the list", "Index")
+                    <div class="large-12 columns">
+
+                        <h1>Load A Photo</h1>
+                        <input type="file" name="uploadImage" id="the-photo-file-field" accept=".jpg, .jpeg, .png">
+                        <div class="row">
+
+                            <div class="col-lg-12" id="preview">
+                                <!--image will be inserted here-->
+                            </div>
+
+                        </div>
+                        <div id="data" class="large-8 columns">
+                            <h2 id="name"></h2>
+                            <p id="size"></p>
+                            <p id="type"></p>
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    <input type="submit" id="btn1" class="btn btn-group" value="Add" />
+                </p>
+
+            </fieldset>
+            @Scripts.Render("~/Scripts/SettingAccount")
+            }
+
+            <div>
+                @Html.ActionLink("Back to the list", "Index")
+            </div>
         </div>
-    </div>
 </div>
