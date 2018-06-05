@@ -125,7 +125,7 @@
 </div>
 
 <div>
-    <h4>Изменение параметров учетной записи</h4>
+    <h4>Changing account settings</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>Password::</dt>
@@ -195,7 +195,7 @@
                 using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
-                    <text>Отключено
+                    <text>Off
                         <input type="submit" value="On" class="btn btn-link" />
                     </text>
                 }

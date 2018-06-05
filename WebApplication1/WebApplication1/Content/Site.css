@@ -237,7 +237,7 @@ table {
         border-radius: 10em;
         width: 1.4em;
         height: 1.4em;
-        line-height: 1.5em;
+        line-height: 1.2em;
         border-color: inherit;
         transition: transform .5s ease-in;
     }

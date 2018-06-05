@@ -86,7 +86,7 @@ namespace WebApplication1.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Неудачная попытка входа.");
+                    ModelState.AddModelError("", "Unlucky trying to logon");
                     return View(model);
             }
         }
@@ -129,7 +129,7 @@ namespace WebApplication1.Controllers
                     return View("Lockout");
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Неправильный код.");
+                    ModelState.AddModelError("", "Wrong code.");
                     return View(model);
             }
         }
