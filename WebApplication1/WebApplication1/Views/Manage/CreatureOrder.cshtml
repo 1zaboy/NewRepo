@@ -5,6 +5,7 @@
                 Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Styles.Render("~/Content/SettingAccount")
+@Scripts.Render("~/Scripts/bootstrap-datepicker.js")
 <div class="row">
     <div class="col-lg-12" style="padding: 15px">
 
@@ -28,10 +29,22 @@
                 @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
             </div>
         </div>
+
+        <script type="text/javascript">
+            $(function () { // will trigger when the document is ready
+                $('.datepicker').datepicker(); //Initialise any date pickers
+            });
+        </script>
+
+        
+        <div style="border-top: 50px">
+            <h3> Date: </h3>
+            @Html.TextBoxFor(m => m.DateOut, new { @class = "form-control datepicker", placeholder = "Enter Drop-off date here..." })
+        </div>
         @Html.ValidationSummary(true)
 
         <fieldset>
-            <legend>Change icon</legend>            
+            <legend>Change icon</legend>
             <div class="editor-field">
                 @*<input type="file" name="uploadImage" />*@
 
@@ -54,7 +67,7 @@
                 </div>
             </div>
             <p>
-                <input type="submit" class="btn btn-group" value="Add" />
+                <input type="submit" id="btn1" class="btn btn-group" value="Add" />
             </p>
 
         </fieldset>

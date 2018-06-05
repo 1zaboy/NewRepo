@@ -1,5 +1,5 @@
 using System.Data.Entity.ModelConfiguration.Conventions;
-
+using System.Data.Entity.ModelConfiguration.Configuration.Properties.Primitive;
 namespace WebApplication1
 {
     using System;
@@ -22,10 +22,10 @@ namespace WebApplication1
 
         public DateTime? DateIn { get; set; }
 
-        public DateTime? DateOut { get; set; }
+        public string DateOut { get; set; }
 
-        [StringLength(50)]
-        public string Price { get; set; }
+        [Column(TypeName = "Money")]
+        public decimal Price { get; set; }
 
         public string Discription { get; set; }
 

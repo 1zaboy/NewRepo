@@ -91,7 +91,14 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult CreatureOrder(DbUserOrder pic, HttpPostedFileBase uploadImage)
         {
-
+            //if(pic.DateOut<DateTime.Now)
+            //{
+            //    pic.DateOut = DateTime.Now;
+            //}
+            if(pic.Price < 0)
+            {
+                pic.Price = 0;
+            }
             pic.DateIn = DateTime.Today;
             pic.User1Id = User.Identity.GetUserId();           
             if (ModelState.IsValid && uploadImage != null)
@@ -187,7 +194,6 @@ namespace WebApplication1.Controllers
             ViewBag.UInfo = ff.AspNetUsers.Where(t => t.Id == UserId).ToList().First();
             ViewBag.Info1 = ff.DbUserOrder.Where(t => t.User1Id == UserId).ToList();
             ViewBag.Info2 = ff.DbUserOrder.Where(t => t.User2Id == UserId).ToList();
-            var tt = 0;
             return View();
         }
         public async Task<ActionResult> Index(ManageMessageId? message)
