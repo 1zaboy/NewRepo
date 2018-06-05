@@ -33,52 +33,42 @@ box-shadow: 0 0 5px;
 
 
 </div>
-<div class="ford">
-
-
-
-
-
-
-    <h3>File</h3>
-    @if (ViewBag.Info2.WayFile != null)
-    {
+@if (ViewBag.Info2.WayFile != null)
+{
+    <div class="ford">
+        <h3>File</h3>
         <div style="  width:50%; height:50%; position: center;">
             @Html.Raw("<img class=\"card_user_style1\" src=\"data:image/jpeg;base64," + Convert.ToBase64String(ViewBag.Info2.WayFile) + "\" />")
+        </div>        
+    </div>
+}
 
-        </div>
-    }
-</div>
-
-
-
-
-@if (ViewBag.Info2.User1Id != User.Identity.GetUserId() && ViewBag.Info2.User2Id == null)
-{
-
-    using (Html.BeginForm("InfoOrder0", "Manage", new { book = ViewBag.Info2.Id }, FormMethod.Post))
+    @if (ViewBag.Info2.User1Id != User.Identity.GetUserId() && ViewBag.Info2.User2Id == null)
     {
 
-        @Html.ValidationSummary(true)
-        <fieldset>
+        using (Html.BeginForm("InfoOrder0", "Manage", new { book = ViewBag.Info2.Id }, FormMethod.Post))
+        {
 
-            <p>
-                <input type="submit" class="btn btn-primary" value="Take order " name="add" style="margin-top: 30px; margin-left: 30px" />
-                <a type="button" class="btn btn-primary" style="margin-top: 30px; margin-left: 60px" href="@Url.Action("UserInfo", "Manage", new { UserId = ViewBag.Info2.User1Id})">Customer</a>
-            </p>
-        </fieldset>
+            @Html.ValidationSummary(true)
+            <fieldset>
+
+                <p>
+                    <input type="submit" class="btn btn-primary" value="Take order " name="add" style="margin-top: 30px; margin-left: 30px" />
+                    <a type="button" class="btn btn-primary" style="margin-top: 30px; margin-left: 60px" href="@Url.Action("UserInfo", "Manage", new { UserId = ViewBag.Info2.User1Id})">Customer</a>
+                </p>
+            </fieldset>
+        }
     }
-}
-@if (ViewBag.Info2.User1Id != User.Identity.GetUserId() && ViewBag.Info2.User2Id != null && ViewBag.Info2.User1End == false)
-{
-    <a type="button" class="btn btn-primary" style="margin-top: 30px; margin-left: 60px" href="@Url.Action("InfoOrder_true_or_false", "Manage", new { id = ViewBag.Info2.Id, _index = 0})">End</a>
-}
-else if (ViewBag.Info2.User1Id != null && ViewBag.Info2.User2Id != User.Identity.GetUserId() && ViewBag.Info2.User2End == false)
-{
-    <a type="button" class="btn btn-primary" style="margin-top: 30px; margin-left: 60px" href="@Url.Action("InfoOrder_true_or_false", "Manage", new { id = ViewBag.Info2.Id, _index = 1})">End</a>
-}
-else if ((ViewBag.Info2.User2Id == User.Identity.GetUserId() && ViewBag.Info2.User2End == true) 
-    || (ViewBag.Info2.User1Id == User.Identity.GetUserId() && ViewBag.Info2.User1End == true))
-{
-    <h3 style="padding-left:10px">You have already confirmed the completion of the order</h3>
-}
+    @if (ViewBag.Info2.User1Id != User.Identity.GetUserId() && ViewBag.Info2.User2Id != null && ViewBag.Info2.User1End == false)
+    {
+        <a type="button" class="btn btn-primary" style="margin-top: 30px; margin-left: 60px" href="@Url.Action("InfoOrder_true_or_false", "Manage", new { id = ViewBag.Info2.Id, _index = 0})">End</a>
+    }
+    else if (ViewBag.Info2.User1Id != null && ViewBag.Info2.User2Id != User.Identity.GetUserId() && ViewBag.Info2.User2End == false)
+    {
+        <a type="button" class="btn btn-primary" style="margin-top: 30px; margin-left: 60px" href="@Url.Action("InfoOrder_true_or_false", "Manage", new { id = ViewBag.Info2.Id, _index = 1})">End</a>
+    }
+    else if ((ViewBag.Info2.User2Id == User.Identity.GetUserId() && ViewBag.Info2.User2End == true)
+        || (ViewBag.Info2.User1Id == User.Identity.GetUserId() && ViewBag.Info2.User1End == true))
+    {
+        <h3 style="padding-left:10px">You have already confirmed the completion of the order</h3>
+    }
