@@ -1,17 +1,12 @@
 ﻿@model IEnumerable<DbUserOrder>
 @Scripts.Render("~/Scripts/card_js")
 @Styles.Render("~/Content/card")
+@{ int t = 0, t1 = 1000;}
 <dov class="row_position row">
     @foreach (DbUserOrder ss in Model)
     {
 
-        @*string str = @ss.Discription;
-        int val = 10;
-        if (str.Length > val)
-        {
-            str = str.Substring(0, val);
-            str += "...";
-        }*@
+       
     <div class="_col-lg-4">
         <figure class="snip1447">
             @if (ss.WayFile != null)
@@ -22,17 +17,33 @@
             {
                 <img class="card-img-top card_user_style1" src="~/Content/image/icon_about_us.png" alt="Card image cap">
             }
-            <figcaption>
-                <img src="@Url.Action("UserImg", "Home", new { id = @ss.User1Id })" alt="profile-sample4" class="profile" />
 
-                <h2>@ss.MainName<span>@*@Url.Action("UserName", "Home", new { id = @ss.User1Id })*@</span></h2>
 
-                <p id="textarea"> @ss.Discription</p>
-                <a href="@Url.Action("InfoOrder", "Manage", new {IdOrder = ss.Id})" class="info">
-                    More Info
-                </a> @*<a href="#" class="follow">Follow</a>*@
-            </figcaption>
+                <figcaption>
+                    <img src="@Url.Action("UserImg", "Home", new { id = @ss.User1Id })" alt="profile-sample4" class="profile" />
+
+                    <h2 id="@t1"><span>@*@Url.Action("UserName", "Home", new { id = @ss.User1Id })*@</span></h2>
+
+
+
+
+                    <p class="EnText" id="@t"/>
+
+                  
+                    <script type="text/javascript">
+                        $('#@t').load('@Url.Action("cut", "Home")?ogranich=50&text=@ss.Discription')
+                        $('#@t1').load('@Url.Action("cut", "Home")?ogranich=10&text=@ss.MainName')
+                    </script>
+
+
+
+                    <a href="@Url.Action("InfoOrder", "Manage", new {IdOrder = ss.Id})" class="info">
+                        More Info
+                    </a> @*<a href="#" class="follow">Follow</a>*@
+                </figcaption>
         </figure>
     </div>
+        t++;
+        t1++;
     }
 </dov>

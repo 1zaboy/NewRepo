@@ -102,7 +102,19 @@ namespace WebApplication1.Controllers
             var allbooks = ff.AspNetUsers.Where(t=>t.UserName.Contains(name1)).OrderByDescending(t => t.Id).Skip(val).Take(10);
             return PartialView(allbooks);
         }        
-        
+
+        public string cut(int ogranich, string text)
+        {
+            string str = text;
+            int val = ogranich;
+            if (str.Length > val)
+            {
+                str = str.Substring(0, val);
+                str += "...";
+            }
+            return str;
+        }
+
 
     }
 }

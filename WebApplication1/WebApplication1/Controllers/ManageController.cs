@@ -14,7 +14,7 @@ using System.IO;
 namespace WebApplication1.Controllers
 {
     using System.IO;
-    [Authorize]
+   
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -25,11 +25,13 @@ namespace WebApplication1.Controllers
             
         }
         dbb ff = new dbb();
+        [Authorize]
         public ActionResult CreatureOrder()
         {
             return View();
         }
-        
+
+        [Authorize]
         [HttpPost]
         public ActionResult Create(DbUserOrder book)
         {          
@@ -37,6 +39,7 @@ namespace WebApplication1.Controllers
             ff.SaveChanges();
             return RedirectToAction("Index");
         }
+        [Authorize]
         public ActionResult SettingAccount()
         {
             var iid = User.Identity.GetUserId();
@@ -44,6 +47,7 @@ namespace WebApplication1.Controllers
             
             return View();
         }
+        [Authorize]
         [HttpPost]
         public ActionResult SettingAccount(AspNetUsers pic, HttpPostedFileBase uploadImage)
         {
@@ -88,6 +92,7 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult CreatureOrder(DbUserOrder pic, HttpPostedFileBase uploadImage)
         {
@@ -124,12 +129,14 @@ namespace WebApplication1.Controllers
         {         
             return View();
         }
+        [Authorize]
         public ActionResult InfoOrder(int IdOrder)
         {
             //ViewBag.Message = "Your contact page.";            
             ViewBag.Info2 = ff.DbUserOrder.Where(t => t.Id == IdOrder).ToList().First();
             return View();
         }
+        [Authorize]
         [HttpPost]
         public ActionResult InfoOrder0(int book)
         {
@@ -139,6 +146,7 @@ namespace WebApplication1.Controllers
             ff.SaveChanges();
             return RedirectToAction("Index");
         }
+        [Authorize]
         public ActionResult InfoOrder_true_or_false(int id, int _index)
         {
             var I = ff.DbUserOrder.Where(t => t.Id == id).ToList().First();
@@ -154,15 +162,13 @@ namespace WebApplication1.Controllers
             ff.SaveChanges();
             return RedirectToAction("Index");
         }
-
-
-
+       
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
-
+        
         public ApplicationSignInManager SignInManager
         {
             get
@@ -174,7 +180,7 @@ namespace WebApplication1.Controllers
                 _signInManager = value; 
             }
         }
-
+        
         public ApplicationUserManager UserManager
         {
             get
@@ -189,6 +195,7 @@ namespace WebApplication1.Controllers
 
         //
         // GET: /Manage/Index        
+        [Authorize]
         public ActionResult UserInfo(string UserId)
         {
             ViewBag.UInfo = ff.AspNetUsers.Where(t => t.Id == UserId).ToList().First();
@@ -196,6 +203,7 @@ namespace WebApplication1.Controllers
             ViewBag.Info2 = ff.DbUserOrder.Where(t => t.User2Id == UserId).ToList();
             return View();
         }
+        [Authorize]
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -225,6 +233,7 @@ namespace WebApplication1.Controllers
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey)
         {
@@ -248,6 +257,7 @@ namespace WebApplication1.Controllers
 
         //
         // GET: /Manage/AddPhoneNumber
+        [Authorize]
         public ActionResult AddPhoneNumber()
         {
             return View();
@@ -256,6 +266,7 @@ namespace WebApplication1.Controllers
         //
         // POST: /Manage/AddPhoneNumber
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
         {
@@ -280,6 +291,7 @@ namespace WebApplication1.Controllers
         //
         // POST: /Manage/EnableTwoFactorAuthentication
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EnableTwoFactorAuthentication()
         {
@@ -295,6 +307,7 @@ namespace WebApplication1.Controllers
         //
         // POST: /Manage/DisableTwoFactorAuthentication
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DisableTwoFactorAuthentication()
         {
@@ -309,6 +322,7 @@ namespace WebApplication1.Controllers
 
         //
         // GET: /Manage/VerifyPhoneNumber
+        [Authorize]
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
@@ -319,6 +333,7 @@ namespace WebApplication1.Controllers
         //
         // POST: /Manage/VerifyPhoneNumber
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
         {
@@ -344,6 +359,7 @@ namespace WebApplication1.Controllers
         //
         // POST: /Manage/RemovePhoneNumber
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemovePhoneNumber()
         {
@@ -362,6 +378,7 @@ namespace WebApplication1.Controllers
 
         //
         // GET: /Manage/ChangePassword
+        [Authorize]
         public ActionResult ChangePassword()
         {
             return View();
@@ -370,6 +387,7 @@ namespace WebApplication1.Controllers
         //
         // POST: /Manage/ChangePassword
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
         {
@@ -393,6 +411,7 @@ namespace WebApplication1.Controllers
 
         //
         // GET: /Manage/SetPassword
+        [Authorize]
         public ActionResult SetPassword()
         {
             return View();
@@ -401,6 +420,7 @@ namespace WebApplication1.Controllers
         //
         // POST: /Manage/SetPassword
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SetPassword(SetPasswordViewModel model)
         {
@@ -425,6 +445,7 @@ namespace WebApplication1.Controllers
 
         //
         // GET: /Manage/ManageLogins
+        [Authorize]
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -449,6 +470,7 @@ namespace WebApplication1.Controllers
         //
         // POST: /Manage/LinkLogin
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider)
         {
@@ -458,6 +480,7 @@ namespace WebApplication1.Controllers
 
         //
         // GET: /Manage/LinkLoginCallback
+        [Authorize]
         public async Task<ActionResult> LinkLoginCallback()
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
@@ -468,7 +491,7 @@ namespace WebApplication1.Controllers
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
-
+        [Authorize]
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)

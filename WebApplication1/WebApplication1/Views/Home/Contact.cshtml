@@ -2,8 +2,7 @@
 @{
     ViewBag.Title = "Contact";
 }
-<!DOCTYPE html>
-<html>
+
 <head>
     
     
@@ -11,8 +10,6 @@
 </head>
 
 <body>
-    @if (User.Identity.GetUserName() != "")
-    {
     <h2>Chat room</h2>
 
         <div class="main">
@@ -29,9 +26,9 @@
                     <input type="button" class="btn btn-block" id="sendmessage" value="Send" />
                 </div>
                 <div id="chatroom"></div>
-                
-                
-                  
+
+
+
                 <div id="chatusers">
                     <p><b>All users</b></p>
                 </div>
@@ -44,16 +41,5 @@
 
         <!--Ссылка на автоматически сгенерированный скрипт хаба SignalR -->
         <script src="~/signalr/hubs"></script>
-        <script src="~/Scripts/util.js"></script>
-    }
-    else
-    {
-        @Html.Action("Login", "Account")
-    }
+        <script src="~/Scripts/util.js"></script>    
 </body>
-</html>
-
-
-
-
-
